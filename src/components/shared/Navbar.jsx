@@ -86,9 +86,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3">
             <IoCart className="text-xl" />
             <IoSearch className="text-xl" />
-            <a className="btn btn-primary btn-outline px-8 hover:text-white">
-              Appointment
-            </a>
+            <a className="btn btn-primary btn-outline px-8 ">Appointment</a>
           </div>
         </div>
       </div>
