@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="footer bg-[#151515] text-[#bbbbbb] p-10">
       <aside>
-        <Image alt="logo" src={"/assets/logo.svg"} height={86.78} width={107} />
+        <Image alt="logo" src={"/assets/logo.svg"} height={60} width={80} />
         <p>
           Edwin Daz is a software and web <br />
           technologies engineer, a life couch
@@ -26,24 +26,21 @@ const Footer = () => {
         </div>
       </aside>
       <nav>
-        <h6 className="text-white font-semibold  uppercase pb-3">Services</h6>
-        <a className="link link-hover">Branding</a>
-        <a className="link link-hover">Design</a>
-        <a className="link link-hover">Marketing</a>
-        <a className="link link-hover">Advertisement</a>
+        <h6 className="text-white font-semibold  uppercase pb-3">About</h6>
+        <a className="link link-hover">Home</a>
+        <a className="link link-hover">Service</a>
+        <a className="link link-hover">Contact</a>
       </nav>
       <nav>
         <h6 className="text-white font-semibold  uppercase pb-3">Company</h6>
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
+        <a className="link link-hover">Why Car Doctor</a>
+        <a className="link link-hover">About</a>
       </nav>
       <nav>
-        <h6 className="text-white font-semibold  uppercase pb-3">Legal</h6>
-        <a className="link link-hover">Terms of use</a>
-        <a className="link link-hover">Privacy policy</a>
-        <a className="link link-hover">Cookie policy</a>
+        <h6 className="text-white font-semibold  uppercase pb-3">Support</h6>
+        <a className="link link-hover">Support Center</a>
+        <a className="link link-hover">Feedback</a>
+        <a className="link link-hover">Accesbility</a>
       </nav>
     </footer>
   );
