@@ -1,0 +1,4 @@
+username:sebokdon
+password:bHFCwhUVqOvx3abt
+
+mongodb+srv://sebokdon:bHFCwhUVqOvx3abt@cluster0.yfgaz.mongodb.net/
