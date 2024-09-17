@@ -2,7 +2,7 @@ import HomePage from "@/components/home/Homepage";
 
 export default function Home() {
   return (
-    <main className="">
+    <main>
       <HomePage />
     </main>
   );
