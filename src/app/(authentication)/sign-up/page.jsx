@@ -47,7 +47,7 @@ const signup = () => {
               type="submit"
               className="w-full btn btn-primary mt-12 text-lg"
             >
-              Sign In
+              Sign Up
             </button>
           </form>
           <div>

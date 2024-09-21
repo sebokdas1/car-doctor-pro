@@ -16,7 +16,7 @@ const login = () => {
         </div>
         <div className="border-2 p-12">
           <h6 className="text-3xl font-semibold text-primary text-center mb-4 lg:mb-12">
-            Sign In
+            Log In
           </h6>
           <form>
             <label htmlFor="email">Email</label> <br />
@@ -39,7 +39,7 @@ const login = () => {
               type="submit"
               className="w-full btn btn-primary mt-12 text-lg"
             >
-              Sign In
+              Log In
             </button>
           </form>
           <div>
