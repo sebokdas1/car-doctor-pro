@@ -1,8 +1,18 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const signup = () => {
+  const handleSignUp = async (event) => {
+    event.preventDefault();
+    const newUser = {
+      name: event.target.name.value,
+      email: event.target.email.value,
+      password: event.target.password.value,
+    };
+    console.log(newUser);
+  };
   return (
     <div className="container lg:px-24 mx-auto py-18">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
@@ -18,10 +28,11 @@ const signup = () => {
           <h6 className="text-3xl font-semibold text-primary text-center mb-4 lg:mb-7">
             Sign Up
           </h6>
-          <form>
+          <form onSubmit={handleSignUp}>
             <label htmlFor="name">Name</label> <br />
             <input
               type="text"
+              id="name"
               name="name"
               placeholder="your name"
               className="mt-3 w-full input input-bordered"

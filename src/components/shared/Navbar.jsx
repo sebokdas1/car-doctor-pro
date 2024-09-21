@@ -87,6 +87,9 @@ const Navbar = () => {
             <IoCart className="text-xl" />
             <IoSearch className="text-xl" />
             <a className="btn btn-primary btn-outline px-8 ">Appointment</a>
+            <Link href="/log-in" className="btn btn-primary px-8">
+              Login
+            </Link>
           </div>
         </div>
       </div>

@@ -6,9 +6,11 @@ export const connecDB = async () => {
   try {
     const uri = process.env.DOCTOR_PRO_MONGODB_URI;
     const client = new MongoClient(uri, {
-      serverApi: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      },
     });
     db = client.db("car-doctor");
     return db;
