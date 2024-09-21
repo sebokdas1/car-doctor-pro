@@ -1,9 +1,12 @@
+"use client";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { IoSearch, IoCart } from "react-icons/io5";
 
 const Navbar = () => {
+  const session = useSession();
   const navItems = [
     {
       title: "Home",
@@ -87,9 +90,18 @@ const Navbar = () => {
             <IoCart className="text-xl" />
             <IoSearch className="text-xl" />
             <a className="btn btn-primary btn-outline px-8 ">Appointment</a>
-            <Link href="/log-in" className="btn btn-primary px-8">
-              Login
-            </Link>
+            {!session.data ? (
+              <Link href="/log-in" className="btn btn-primary px-8">
+                Login
+              </Link>
+            ) : (
+              <button
+                onClick={() => signOut()}
+                className="btn btn-primary px-8"
+              >
+                LogOut
+              </button>
+            )}
           </div>
         </div>
       </div>
