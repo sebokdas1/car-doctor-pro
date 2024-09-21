@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const signup = () => {
+const Signup = () => {
   const handleSignUp = async (event) => {
     event.preventDefault();
     const newUser = {
@@ -86,4 +86,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;
