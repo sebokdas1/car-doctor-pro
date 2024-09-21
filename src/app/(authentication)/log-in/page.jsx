@@ -3,8 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
   const handleLogIn = async (event) => {
     event.preventDefault();
     const email = event.target.email.value;
@@ -14,7 +16,9 @@ const Login = () => {
       password,
       redirect: false,
     });
-    console.log(resp);
+    if (resp.status === 200) {
+      router.push("/");
+    }
   };
   return (
     <div className="container lg:px-24 mx-auto py-18">
