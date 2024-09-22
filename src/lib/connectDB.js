@@ -1,7 +1,7 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 let db;
-export const connecDB = async () => {
+export const connectDB = async () => {
   if (db) return db;
   try {
     const uri = process.env.DOCTOR_PRO_MONGODB_URI;
