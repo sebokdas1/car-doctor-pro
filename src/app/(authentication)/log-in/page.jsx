@@ -4,6 +4,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import React from "react";
 import { useRouter } from "next/navigation";
+import SocialSignIn from "@/components/shared/SocialSignIn";
 
 const Login = () => {
   const router = useRouter();
@@ -60,9 +61,9 @@ const Login = () => {
             </button>
           </form>
           <div>
-            {/* <h6 className="my-12 text-center">or sign in with</h6> */}
-            {/* <SocialSignin /> */}
-            <h6 className="my-12 text-center">
+            <h6 className="my-4 text-center">or sign in with</h6>
+            <SocialSignIn />
+            <h6 className="my-4 text-center">
               Not have account ?{" "}
               <Link className="text-primary font-semibold" href={"/sign-up"}>
                 Sign Up
