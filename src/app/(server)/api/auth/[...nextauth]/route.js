@@ -36,8 +36,8 @@ const handler = NextAuth({
       },
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.DOCTOR_PRO_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.DOCTOR_PRO_GOOGLE_CLIENT_SECRET,
     }),
   ],
   pages: {
