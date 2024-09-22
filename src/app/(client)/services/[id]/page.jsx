@@ -3,7 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Page = async ({ params }) => {
+export const metadata = {
+  title: "Service details",
+  description: "car service details page",
+};
+
+const page = async ({ params }) => {
   const details = await getServiceDetails(params.id);
   const { _id, title, description, img, price, facility } = details.service;
   return (
@@ -25,16 +30,16 @@ const Page = async ({ params }) => {
           </div>
         </div>
 
-        <div className="p-10 bg-gray-100">
+        <div className="p-2 lg:p-10 bg-gray-100">
           <h2 className="text-3xl font-bold text-orange-600">{title}</h2>
           <p>{description}</p>
         </div>
       </div>
 
       <div className="my-6">
-        <div className="grid grid-cols-3 gap-8">
-          <div className="col-span-2 grid grid-cols-2 gap-6">
-            {facility.map((item, index) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {facility?.map((item, index) => (
               <div
                 className="bg-rose-100 p-4 border-t-4 border-t-rose-500 rounded-xl"
                 key={index}
@@ -69,4 +74,4 @@ const Page = async ({ params }) => {
   );
 };
 
-export default Page;
+export default page;
