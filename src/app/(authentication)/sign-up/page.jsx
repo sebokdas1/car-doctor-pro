@@ -75,7 +75,7 @@ const Signup = () => {
             <h6 className="my-4 text-center">or sign in with</h6>
             <SocialSignIn />
             <h6 className="my-4 text-center">
-              Already have an account ?{" "}
+              Already have an account ?
               <Link className="text-primary font-semibold" href={"/log-in"}>
                 Log In
               </Link>

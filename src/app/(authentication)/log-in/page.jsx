@@ -64,7 +64,7 @@ const Login = () => {
             <h6 className="my-4 text-center">or sign in with</h6>
             <SocialSignIn />
             <h6 className="my-4 text-center">
-              Not have account ?{" "}
+              Not have account ?
               <Link className="text-primary font-semibold" href={"/sign-up"}>
                 Sign Up
               </Link>
