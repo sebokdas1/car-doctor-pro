@@ -5,9 +5,10 @@ export const POST = async (request) => {
   const db = await connectDB();
   const bookingCollection = db.collection("bookings");
   try {
-    const service = await bookingCollection.insertOne(booking);
+    const newBooking = await bookingCollection.insertOne(booking);
     return Response.json({ message: "Service booked successfully" });
   } catch (error) {
     console.log(error);
+    return Response.json({ message: "Something went wrong" });
   }
 };
