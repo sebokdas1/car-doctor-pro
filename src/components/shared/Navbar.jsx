@@ -17,8 +17,8 @@ const Navbar = () => {
       path: "/",
     },
     {
-      title: "Services",
-      path: "/",
+      title: "myBookings",
+      path: "/my-bookings",
     },
     {
       title: "Blog",

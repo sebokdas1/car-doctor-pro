@@ -59,7 +59,7 @@ const Page = ({ params }) => {
           </h1>
         </div>
       </div>
-      <div className="my-12 bg-slate-300 p-12">
+      <div className="my-6 lg:my-12 bg-slate-300 p-6 lg:p-12">
         <form onSubmit={handleBooking}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="form-control">
