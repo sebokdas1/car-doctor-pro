@@ -75,7 +75,7 @@ const Page = () => {
                   <td>{date}</td>
                   <td>
                     <div className="flex items-center space-x-3">
-                      <Link href={`/my-bookings/update/${_id}`}>
+                      <Link href={`/my-bookings/update-booking/${_id}`}>
                         <button className="btn btn-primary">Edit</button>
                       </Link>
                       <button

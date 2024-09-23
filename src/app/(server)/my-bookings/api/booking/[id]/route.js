@@ -19,7 +19,7 @@ export const DELETE = async (request, { params }) => {
 export const PATCH = async (request, { params }) => {
   const db = await connectDB();
   const bookingsCollection = db.collection("bookings");
-  const { date, phone, address } = await request.json();
+  const updatedDoc = await request.json();
   try {
     const resp = await bookingsCollection.updateOne(
       {
@@ -27,9 +27,7 @@ export const PATCH = async (request, { params }) => {
       },
       {
         $set: {
-          date,
-          phone,
-          address,
+          ...updatedDoc,
         },
       },
       { upsert: true }
