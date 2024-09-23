@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 
 const Page = () => {
   const session = useSession();
-  console.log(session);
   const [bookings, setBookings] = useState([]);
   const loadData = async () => {
     const resp = await fetch(
@@ -14,11 +13,10 @@ const Page = () => {
     );
     const data = await resp?.json();
     setBookings(data?.bookings);
-    console.log(data);
   };
   useEffect(() => {
     loadData();
-  }, [session]);
+  }, [session, bookings]);
   return (
     <div className="container mx-auto">
       {/* <ToastContainer/> */}
