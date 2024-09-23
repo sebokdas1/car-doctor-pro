@@ -14,9 +14,21 @@ const Page = () => {
     const data = await resp?.json();
     setBookings(data?.bookings);
   };
+
+  const handleDelete = async (id) => {
+    const deleted = await fetch(
+      `http://localhost:3000/my-bookings/api/delete/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (deleted?.response?.deletedCount > 0) {
+      loadData();
+    }
+  };
   useEffect(() => {
     loadData();
-  }, [session, bookings]);
+  }, [bookings]);
   return (
     <div className="container mx-auto">
       {/* <ToastContainer/> */}
@@ -50,9 +62,9 @@ const Page = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              {bookings?.map(({ serviceTitle, _id, date, price }) => (
+              {bookings?.map(({ serviceTitle, _id, date, price }, index) => (
                 <tr key={_id}>
-                  <th>1</th>
+                  <th>{index + 1}</th>
                   <td>{serviceTitle}</td>
                   <td>{price}</td>
                   <td>{date}</td>
@@ -61,7 +73,12 @@ const Page = () => {
                       <Link href={`/my-bookings/update/${_id}`}>
                         <button class="btn btn-primary">Edit</button>
                       </Link>
-                      <button class="btn btn-error">Delete</button>
+                      <button
+                        onClick={() => handleDelete(_id)}
+                        class="btn btn-error"
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>

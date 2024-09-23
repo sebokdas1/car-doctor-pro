@@ -8,7 +8,7 @@ export const DELETE = async (request, { params }) => {
     const resp = await bookingsCollection.deleteOne({
       _id: new ObjectId(params.id),
     });
-    return Response.json({ message: "bookings deleted", Response: resp });
+    return Response.json({ message: "bookings deleted", response: resp });
   } catch (error) {
     return Response.json({ message: "something went wrong" });
   }

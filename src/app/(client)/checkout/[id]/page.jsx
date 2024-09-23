@@ -78,7 +78,7 @@ const Page = ({ params }) => {
                 <span className="label-text">Date</span>
               </label>
               <input
-                defaultValue={new Date().getDate()}
+                defaultValue={new Date().toISOString().split("T")[0]}
                 type="date"
                 name="date"
                 className="input input-bordered"
