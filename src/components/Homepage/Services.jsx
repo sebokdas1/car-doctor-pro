@@ -11,7 +11,7 @@ const Services = async () => {
         <h2 className="text-5xl">Our Service Area</h2>
         <p>
           the majority have suffered alteration in some form, by injected
-          humour, or randomised <br /> words which don't look even slightly
+          humour, or randomised <br /> words which dont look even slightly
           believable.
         </p>
       </div>

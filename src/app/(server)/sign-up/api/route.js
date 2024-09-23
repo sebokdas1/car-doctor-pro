@@ -1,10 +1,10 @@
-import { connecDB } from "@/lib/connectDB";
+import { connectDB } from "@/lib/connectDB";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 export const POST = async (request) => {
   const newUser = await request.json();
   try {
-    const db = await connecDB();
+    const db = await connectDB();
     const userCollection = db.collection("users");
     const exist = await userCollection.findOne({ email: newUser.email });
     if (exist) {
