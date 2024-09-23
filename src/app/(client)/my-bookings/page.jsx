@@ -10,7 +10,7 @@ const Page = () => {
   const [bookings, setBookings] = useState([]);
   const loadData = async () => {
     const resp = await fetch(
-      `http://localhost:3000/my-bookings/api/${session?.data?.user?.email}`
+      `${process.env.DOCTOR_PRO_BASE_URL}/my-bookings/api/${session?.data?.user?.email}`
     );
     const data = await resp?.json();
     setBookings(data?.bookings);
@@ -18,7 +18,7 @@ const Page = () => {
 
   const handleDelete = async (id) => {
     const deleted = await fetch(
-      `http://localhost:3000/my-bookings/api/booking/${id}`,
+      `${process.env.DOCTOR_PRO_BASE_URL}/my-bookings/api/booking/${id}`,
       {
         method: "DELETE",
       }

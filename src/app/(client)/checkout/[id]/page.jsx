@@ -26,13 +26,16 @@ const Page = ({ params }) => {
       serviceID: _id,
       price: price,
     };
-    const resp = await fetch("http://localhost:3000/services/checkout", {
-      method: "POST",
-      body: JSON.stringify(newBooking),
-      headers: {
-        "content-type": "application/json",
-      },
-    });
+    const resp = await fetch(
+      `${process.env.DOCTOR_PRO_BASE_URL}/services/checkout`,
+      {
+        method: "POST",
+        body: JSON.stringify(newBooking),
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
     const response = await resp?.json();
     toast.success(response?.message);
     event.target.reset();
