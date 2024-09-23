@@ -3,6 +3,7 @@ import { getServiceDetails } from "@/lib/getServices";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Page = ({ params }) => {
   const { data } = useSession();
@@ -32,8 +33,8 @@ const Page = ({ params }) => {
         "content-type": "application/json",
       },
     });
-    // const response = await resp?.json();
-    // toast.success(response?.message);
+    const response = await resp?.json();
+    toast.success(response?.message);
     event.target.reset();
   };
 

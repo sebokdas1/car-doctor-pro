@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const session = useSession();
@@ -22,8 +23,12 @@ const Page = () => {
         method: "DELETE",
       }
     );
-    if (deleted?.response?.deletedCount > 0) {
+    const resp = await deleted.json();
+    if (resp?.response?.deletedCount > 0) {
+      toast.success(resp?.message);
       loadData();
+    } else {
+      toast.error(resp?.message);
     }
   };
   useEffect(() => {
@@ -71,11 +76,11 @@ const Page = () => {
                   <td>
                     <div className="flex items-center space-x-3">
                       <Link href={`/my-bookings/update/${_id}`}>
-                        <button class="btn btn-primary">Edit</button>
+                        <button className="btn btn-primary">Edit</button>
                       </Link>
                       <button
                         onClick={() => handleDelete(_id)}
-                        class="btn btn-error"
+                        className="btn btn-error"
                       >
                         Delete
                       </button>
