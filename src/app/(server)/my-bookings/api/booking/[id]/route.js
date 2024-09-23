@@ -1,6 +1,7 @@
 import { connectDB } from "@/lib/connectDB";
 import { ObjectId } from "mongodb";
 
+// booking delete api
 export const DELETE = async (request, { params }) => {
   const db = await connectDB();
   const bookingsCollection = db.collection("bookings");
@@ -14,6 +15,32 @@ export const DELETE = async (request, { params }) => {
   }
 };
 
+// booking update api
+export const PATCH = async (request, { params }) => {
+  const db = await connectDB();
+  const bookingsCollection = db.collection("bookings");
+  const { date, phone, address } = await request.json();
+  try {
+    const resp = await bookingsCollection.updateOne(
+      {
+        _id: new ObjectId(params.id),
+      },
+      {
+        $set: {
+          date,
+          phone,
+          address,
+        },
+      },
+      { upsert: true }
+    );
+    return Response.json({ message: "updated the booking", response: resp });
+  } catch (error) {
+    return Response.json({ message: "something went wrong" });
+  }
+};
+
+// booking get api
 export const GET = async (request, { params }) => {
   const db = await connectDB();
   const bookingsCollection = db.collection("bookings");
