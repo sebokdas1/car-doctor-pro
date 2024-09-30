@@ -1,5 +1,6 @@
 "use client";
 import { getServiceDetails } from "@/lib/getServices";
+import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -8,11 +9,21 @@ import { toast } from "react-toastify";
 const Page = ({ params }) => {
   const { data } = useSession();
   const [service, setService] = useState({});
-  const loadService = async () => {
-    const details = await getServiceDetails(params.id);
-    setService(details.service);
-  };
-  const { _id, title, description, img, price, facility } = service || {};
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/services/api/${params.id}`);
+        setService(response?.data?.service);
+      } catch (err) {
+        toast.error(err?.message);
+      }
+    };
+
+    fetchData();
+  }, [params.id]);
+
+  const { _id, title, img, price } = service || {};
 
   const handleBooking = async (event) => {
     event.preventDefault();
@@ -41,13 +52,8 @@ const Page = ({ params }) => {
     event.target.reset();
   };
 
-  useEffect(() => {
-    loadService();
-  }, [params]);
-
   return (
     <div className="container mx-auto">
-      {/* <ToastContainer /> */}
       <div className="relative  h-72">
         <Image
           className="absolute h-72 w-full left-0 top-0 object-cover"

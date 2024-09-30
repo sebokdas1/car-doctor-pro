@@ -4,6 +4,7 @@ export const getServices = async () => {
   ).json();
   return services;
 };
+
 export const getServiceDetails = async (id) => {
   const service = (
     await fetch(`${process.env.DOCTOR_PRO_BASE_URL}/services/api/${id}`)
