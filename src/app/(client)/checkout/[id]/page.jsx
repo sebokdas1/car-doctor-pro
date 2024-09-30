@@ -1,5 +1,4 @@
 "use client";
-import { getServiceDetails } from "@/lib/getServices";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -27,28 +26,22 @@ const Page = ({ params }) => {
 
   const handleBooking = async (event) => {
     event.preventDefault();
-    const newBooking = {
-      email: data?.user?.email,
-      name: data?.user?.name,
-      address: event.target.address.value,
-      phone: event.target.phone.value,
-      date: event.target.date.value,
-      serviceTitle: title,
-      serviceID: _id,
-      price: price,
-    };
-    const resp = await fetch(
-      `${process.env.DOCTOR_PRO_BASE_URL}/services/checkout`,
-      {
-        method: "POST",
-        body: JSON.stringify(newBooking),
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );
-    const response = await resp?.json();
-    toast.success(response?.message);
+
+    try {
+      const res = await axios.post("/services/checkout", {
+        email: data?.user?.email,
+        name: data?.user?.name,
+        address: event.target.address.value,
+        phone: event.target.phone.value,
+        date: event.target.date.value,
+        serviceTitle: title,
+        serviceID: _id,
+        price: price,
+      });
+      toast.success(res?.data?.message);
+    } catch (err) {
+      toast.error(err?.data?.message);
+    }
     event.target.reset();
   };
 

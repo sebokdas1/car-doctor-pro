@@ -63,7 +63,7 @@ const page = async ({ params }) => {
               <p className="text-2xl text-rose-500"> ${price}</p>
             </div>
             <Link href={`/checkout/${_id}`}>
-              <button className="bg-rose-500 px-3 py-2 rounded-lg mt-2 w-full">
+              <button className="bg-rose-500 px-3 text-white font-semibold py-2 rounded-lg mt-2 w-full">
                 Check out
               </button>
             </Link>
