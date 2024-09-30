@@ -27,29 +27,18 @@ const Page = ({ params }) => {
 
   const handleUpdateBooking = async (event) => {
     event.preventDefault();
-    const updatedBooking = {
-      date: event.target.date.value,
-      phone: event.target.phone.value,
-      address: event.target.address.value,
-    };
-    const resp = await fetch(
-      `${process.env.DOCTOR_PRO_BASE_URL}/my-bookings/api/booking/${params.id}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify(updatedBooking),
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );
-    if (resp.status === 200) {
-      toast.success("Updated Successfully");
+    try {
+      const res = await axios.patch(`/my-bookings/api/booking/${params.id}`, {
+        date: event.target.date.value,
+        phone: event.target.phone.value,
+        address: event.target.address.value,
+      });
+      toast.success(res?.data?.message);
+    } catch (err) {
+      toast.error(err?.data?.message);
     }
   };
 
-  // useEffect(() => {
-  //   loadBooking();
-  // }, [params]);
   return (
     <div className="container mx-auto">
       <div className="relative  h-72">
