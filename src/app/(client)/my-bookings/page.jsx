@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,35 +9,34 @@ import { toast } from "react-toastify";
 const Page = () => {
   const session = useSession();
   const [bookings, setBookings] = useState([]);
-  const loadData = async () => {
-    const resp = await fetch(
-      `${process.env.DOCTOR_PRO_BASE_URL}/my-bookings/api/${session?.data?.user?.email}`
-    );
-    const data = await resp?.json();
-    setBookings(data?.bookings);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `/my-bookings/api/${session?.data?.user?.email}`
+        );
+        setBookings(response?.data?.bookings);
+      } catch (err) {
+        console.log(err?.message);
+      }
+    };
+
+    fetchData();
+  }, [session?.data?.user?.email, bookings]);
 
   const handleDelete = async (id) => {
-    const deleted = await fetch(
-      `${process.env.DOCTOR_PRO_BASE_URL}/my-bookings/api/booking/${id}`,
-      {
-        method: "DELETE",
+    try {
+      const res = await axios.delete(`/my-bookings/api/booking/${id}`);
+      if (res?.response?.deletedCount > 0) {
+        toast.success(res?.message);
       }
-    );
-    const resp = await deleted.json();
-    if (resp?.response?.deletedCount > 0) {
-      toast.success(resp?.message);
-      loadData();
-    } else {
-      toast.error(resp?.message);
+    } catch (err) {
+      toast.error(err.message);
     }
   };
-  useEffect(() => {
-    loadData();
-  }, [bookings]);
+
   return (
     <div className="container mx-auto">
-      {/* <ToastContainer/> */}
       <div className="relative  h-72">
         <Image
           className="absolute h-72 w-full left-0 top-0 object-cover"
@@ -67,19 +67,21 @@ const Page = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              {bookings?.map(({ serviceTitle, _id, date, price }, index) => (
-                <tr key={_id}>
+              {bookings?.map((booking, index) => (
+                <tr key={booking?._id}>
                   <th>{index + 1}</th>
-                  <td>{serviceTitle}</td>
-                  <td>{price}</td>
-                  <td>{date}</td>
+                  <td>{booking?.serviceTitle}</td>
+                  <td>{booking?.price}</td>
+                  <td>{booking?.date}</td>
                   <td>
                     <div className="flex items-center space-x-3">
-                      <Link href={`/my-bookings/update-booking/${_id}`}>
+                      <Link
+                        href={`/my-bookings/update-booking/${booking?._id}`}
+                      >
                         <button className="btn btn-primary">Edit</button>
                       </Link>
                       <button
-                        onClick={() => handleDelete(_id)}
+                        onClick={() => handleDelete(booking?._id)}
                         className="btn btn-error"
                       >
                         Delete

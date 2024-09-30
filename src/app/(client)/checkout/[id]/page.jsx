@@ -26,7 +26,6 @@ const Page = ({ params }) => {
 
   const handleBooking = async (event) => {
     event.preventDefault();
-
     try {
       const res = await axios.post("/services/checkout", {
         email: data?.user?.email,
