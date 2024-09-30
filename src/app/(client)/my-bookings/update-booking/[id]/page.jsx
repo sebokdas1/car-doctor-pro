@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -8,13 +9,22 @@ const Page = ({ params }) => {
   const { data } = useSession();
   const [booking, setBooking] = useState([]);
 
-  const loadBooking = async () => {
-    const bookingDetail = await fetch(
-      `${process.env.DOCTOR_PRO_BASE_URL}/my-bookings/api/booking/${params.id}`
-    );
-    const data = await bookingDetail.json();
-    setBooking(data.response);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `/my-bookings/api/booking/${params.id}`
+        );
+        console.log(response);
+        setBooking(response?.data?.response);
+      } catch (err) {
+        console.log(err?.message);
+      }
+    };
+
+    fetchData();
+  }, [params?.id]);
+
   const handleUpdateBooking = async (event) => {
     event.preventDefault();
     const updatedBooking = {
@@ -37,9 +47,9 @@ const Page = ({ params }) => {
     }
   };
 
-  useEffect(() => {
-    loadBooking();
-  }, [params]);
+  // useEffect(() => {
+  //   loadBooking();
+  // }, [params]);
   return (
     <div className="container mx-auto">
       <div className="relative  h-72">
