@@ -4,7 +4,7 @@ import React from "react";
 
 const ServiceCard = ({ service }) => {
   return (
-    <div className="card card-compact bg-base-100 w-96 shadow-xl mx-2 lg:mx-0">
+    <div className="card card-compact bg-base-100 lg:w-96 shadow-xl mx-2 lg:mx-0">
       <figure>
         <Image
           height={120}

@@ -3,6 +3,8 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { FiLogOut } from "react-icons/fi";
+import { RxAvatar } from "react-icons/rx";
 import { IoSearch, IoCart } from "react-icons/io5";
 
 const Navbar = () => {
@@ -31,7 +33,7 @@ const Navbar = () => {
   ];
   return (
     <nav className=" bg-base-100">
-      <div className="navbar container mx-auto">
+      <div className="navbar container justify-center mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} className=" lg:hidden">
@@ -56,7 +58,7 @@ const Navbar = () => {
                 <Link
                   key={item.title}
                   href={item.path}
-                  className="font-semibold hover:text-primary duration-300"
+                  className="font-semibold mt-3  border-b border-gray-500 hover:text-primary duration-300"
                 >
                   {item.title}
                 </Link>
@@ -69,6 +71,7 @@ const Navbar = () => {
               src="assets/logo.svg"
               height={86.78}
               width={107}
+              className="ml-12 lg:ml-0"
             />
           </Link>
         </div>
@@ -89,17 +92,29 @@ const Navbar = () => {
           <div className="flex items-center space-x-3">
             <IoCart className="text-xl" />
             <IoSearch className="text-xl" />
-            <a className="btn btn-primary btn-outline px-8 ">Appointment</a>
-            {!session.data ? (
-              <Link href="/log-in" className="btn btn-primary px-8">
+
+            {!session.data && (
+              <Link href="/log-in" className="btn btn-primary px-3 lg:px-8">
                 Login
               </Link>
-            ) : (
+            )}
+
+            {session.status === "loading" && (
+              <div class="flex justify-center items-center">
+                <div class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            )}
+            {session.status === "authenticated" && (
               <button
                 onClick={() => signOut()}
-                className="btn btn-primary px-8"
+                className="btn btn-primary hidden lg:block px-8"
               >
                 LogOut
+              </button>
+            )}
+            {session.status === "authenticated" && (
+              <button onClick={() => signOut()} className="lg:hidden">
+                <FiLogOut />
               </button>
             )}
           </div>
