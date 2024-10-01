@@ -6,6 +6,7 @@ import {
   FaGithubSquare,
   FaTwitterSquare,
 } from "react-icons/fa";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -19,9 +20,15 @@ const Footer = () => {
           trainer who is also a serial.
         </p>
         <div className="flex items-center space-x-4 text-2xl pt-2 font-bold text-white">
-          <IoLogoLinkedin className="cursor-pointer" />
-          <FaFacebookSquare className="cursor-pointer" />
-          <FaGithubSquare className="cursor-pointer" />
+          <Link href={"https://www.linkedin.com/in/sebokdasbd"} target="_blank">
+            <IoLogoLinkedin />
+          </Link>
+          <Link href={"https://www.facebook.com/sebokdasbd"} target="_blank">
+            <FaFacebookSquare />
+          </Link>
+          <Link href={"https://github.com/sebokdas1"} target="_blank">
+            <FaGithubSquare />
+          </Link>
           <FaTwitterSquare className="cursor-pointer" />
         </div>
       </aside>
