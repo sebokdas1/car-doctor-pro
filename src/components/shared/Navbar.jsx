@@ -19,10 +19,6 @@ const Navbar = () => {
       path: "/",
     },
     {
-      title: "myBookings",
-      path: "/my-bookings",
-    },
-    {
       title: "Blog",
       path: "/",
     },
@@ -63,6 +59,14 @@ const Navbar = () => {
                   {item.title}
                 </Link>
               ))}
+              {session.status === "authenticated" && (
+                <Link
+                  href={"/my-bookings"}
+                  className="font-semibold mt-3  border-b border-gray-500 hover:text-primary duration-300"
+                >
+                  myBookings
+                </Link>
+              )}
             </div>
           </div>
           <Link href={"/"}>
@@ -86,6 +90,14 @@ const Navbar = () => {
                 {item.title}
               </Link>
             ))}
+            {session.status === "authenticated" && (
+              <Link
+                href={"/my-bookings"}
+                className="font-semibold hover:text-primary duration-300"
+              >
+                myBookings
+              </Link>
+            )}
           </div>
         </div>
         <div className="navbar-end">
