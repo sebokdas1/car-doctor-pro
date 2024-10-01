@@ -20,5 +20,5 @@ export const middleware = async (request) => {
 };
 
 export const config = {
-  matcher: ["/my-bookings/:path*", "/services/:path*", "/checkout/:path*"],
+  matcher: ["/my-bookings/:path*", "/checkout/:path*"],
 };
