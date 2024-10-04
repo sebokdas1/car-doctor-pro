@@ -1,8 +1,9 @@
 export const products = [
   {
     _id: "635a0c0b64a6d231228942ae00",
-    service_id: "04",
+    service_id: "01",
     title: "Car Engine Plug",
+    rating: "5",
     img: "https://i.ibb.co.com/8z4fVXB/1.png",
     price: "20.00",
     description:
@@ -32,8 +33,9 @@ export const products = [
   },
   {
     _id: "635a0c0b64a6d231228942af01",
-    service_id: "05",
+    service_id: "02",
     title: "Car Air Filter",
+    rating: "5",
     img: "https://i.ibb.co.com/0CTpf7s/2.png",
     price: "20.00",
     description:
@@ -63,8 +65,9 @@ export const products = [
   },
   {
     _id: "635b591a1dafe382a9da8c9602",
-    service_id: "01",
+    service_id: "03",
     title: "Full car Repair",
+    rating: "5",
     img: "https://i.ibb.co.com/z8rpGL7/3.png",
     price: "20.00",
     description:
@@ -93,9 +96,10 @@ export const products = [
     ],
   },
   {
-    _id: "635b5afc1dafe382a9da8c9804",
-    service_id: "02",
+    _id: "635b5afc1dafe382a9da8c9803",
+    service_id: "04",
     title: "Engine Repair",
+    rating: "5",
     img: "https://i.ibb.co.com/9pCnGT1/4.png",
     price: "20.00",
     description:
@@ -124,9 +128,10 @@ export const products = [
     ],
   },
   {
-    _id: "635b5b691dafe382a9da8c9905",
-    service_id: "03",
+    _id: "635b5b691dafe382a9da8c9904",
+    service_id: "05",
     title: "Automatic Services",
+    rating: "5",
     img: "https://i.ibb.co.com/92NZBZt/5.png",
     price: "30.00",
     description:
@@ -155,9 +160,10 @@ export const products = [
     ],
   },
   {
-    _id: "635b5ba51dafe382a9da8c9a06",
+    _id: "635b5ba51dafe382a9da8c9a05",
     service_id: "06",
     title: "Electrical System",
+    rating: "5",
     img: "https://i.ibb.co.com/02y28Qz/6.png",
     price: "20.00",
     description:
