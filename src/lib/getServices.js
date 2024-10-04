@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//to get all services
 export const getServices = async () => {
   try {
     const response = await axios.get(
@@ -9,10 +10,11 @@ export const getServices = async () => {
     return services;
   } catch (error) {
     console.error("Error fetching services:", error.message);
-    throw error; // Optionally rethrow the error if you want to handle it elsewhere
+    throw error;
   }
 };
 
+//to get single service details
 export const getServiceDetails = async (id) => {
   try {
     const response = await axios.get(
@@ -22,6 +24,20 @@ export const getServiceDetails = async (id) => {
     return service;
   } catch (error) {
     console.error("Error fetching services:", error.message);
-    throw error; // Optionally rethrow the error if you want to handle it elsewhere
+    throw error;
+  }
+};
+
+//to get all products
+export const getProducts = async () => {
+  try {
+    const response = await axios.get(
+      `${process.env.DOCTOR_PRO_BASE_URL}/products/api/get-all`
+    );
+    const products = response.data;
+    return products;
+  } catch (error) {
+    console.error("Error fetching products:", error.message);
+    throw error;
   }
 };
