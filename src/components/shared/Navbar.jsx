@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FiLogOut } from "react-icons/fi";
-import { RxAvatar } from "react-icons/rx";
 import { IoSearch, IoCart } from "react-icons/io5";
 
 const Navbar = () => {
@@ -72,7 +71,7 @@ const Navbar = () => {
           <Link href={"/"}>
             <Image
               alt="logo"
-              src="assets/logo.svg"
+              src="/assets/logo.svg"
               height={86.78}
               width={107}
               className="ml-12 lg:ml-0"
