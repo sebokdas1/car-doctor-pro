@@ -4,6 +4,7 @@ import About from "./About";
 import Services from "./Services";
 import Quary from "./Quary";
 import Products from "./Products";
+import CoreFeatures from "./CoreFeatures";
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <Services />
       <Quary />
       <Products />
+      <CoreFeatures />
     </div>
   );
 };

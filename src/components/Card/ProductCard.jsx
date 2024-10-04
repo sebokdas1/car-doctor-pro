@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
         <p>{product?.title}</p>
         <div className="card-actions flex justify-between items-center">
           <p className="text-[#FF3811]">${product?.price}</p>{" "}
-          <button className="btn  btn-outline">Add to Card</button>
+          <button className="btn btn-xs ">Add to Card</button>
         </div>
       </div>
     </div>
