@@ -105,7 +105,7 @@ const Navbar = () => {
             <IoCart className="text-xl" />
             <IoSearch className="text-xl" />
 
-            {!session.data && (
+            {session.status === "unauthenticated" && (
               <Link href="/log-in" className="btn btn-primary px-3 lg:px-8">
                 Login
               </Link>

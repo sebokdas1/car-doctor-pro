@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-[#151515] text-[#bbbbbb] p-10">
+    <footer className="footer bg-[#151515] text-[#bbbbbb] mt-6 p-10">
       <aside>
         <Image alt="logo" src={"/assets/logo.svg"} height={60} width={80} />
         <p>
