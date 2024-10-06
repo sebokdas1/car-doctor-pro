@@ -64,5 +64,38 @@
       "linkedin": "https://www.facebook.com/?_rdc=1&_rdr",
       "twitter": "https://www.facebook.com/?_rdc=1&_rdr"
     }
+  },
+  {
+    "id": 7,
+    "title": "Fedric carlos",
+    "img": "https://i.ibb.co.com/b6Nnsq7/1.jpg",
+    "designation": "Engine Expert",
+    "links": {
+      "facebook": "https://www.facebook.com/?_rdc=1&_rdr",
+      "linkedin": "https://www.facebook.com/?_rdc=1&_rdr",
+      "twitter": "https://www.facebook.com/?_rdc=1&_rdr"
+    }
+  },
+  {
+    "id": 8,
+    "title": "Fedric carlos",
+    "img": "https://i.ibb.co.com/k5r8k84/2.jpg",
+    "designation": "Engine Expert",
+    "links": {
+      "facebook": "https://www.facebook.com/?_rdc=1&_rdr",
+      "linkedin": "https://www.facebook.com/?_rdc=1&_rdr",
+      "twitter": "https://www.facebook.com/?_rdc=1&_rdr"
+    }
+  },
+  {
+    "id": 9,
+    "title": "Fedric carlos",
+    "img": "https://i.ibb.co.com/wwnL7cQ/3.jpg",
+    "designation": "Engine Expert",
+    "links": {
+      "facebook": "https://www.facebook.com/?_rdc=1&_rdr",
+      "linkedin": "https://www.facebook.com/?_rdc=1&_rdr",
+      "twitter": "https://www.facebook.com/?_rdc=1&_rdr"
+    }
   }
 ]

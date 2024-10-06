@@ -12,11 +12,17 @@ const Team = () => {
     fetch("/teams.json")
       .then((res) => res.json())
       .then((data) => setTeams(data));
-  }, [teams]);
-  console.log(teams.length);
-  const handleNextSlide = () => {
-    setPrevious(current);
-    setCurrent(current + 3);
+  }, []);
+
+  const handlePrevSlide = async () => {
+    // console.log(current);
+    await setPrevious(previous - 3);
+    await setCurrent(current - 3);
+  };
+  const handleNextSlide = async () => {
+    // console.log(current);
+    await setPrevious(previous + 3);
+    await setCurrent(current + 3);
   };
   return (
     <div className="container mx-auto mt-14">
@@ -33,8 +39,8 @@ const Team = () => {
       {/* carousel part */}
 
       <div className="">
-        <div className="grid  grid-cols-3 gap-1 mt-6">
-          {teams.slice(previous, current).map((team) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3  gap-1 mt-6">
+          {teams?.slice(previous, current)?.map((team) => (
             <div className="card bg-base-100 w-96 shadow" key={team?.id}>
               <figure>
                 <Image src={team?.img} alt="img" height={294} width={314} />
@@ -46,17 +52,17 @@ const Team = () => {
                 <p>{team?.designation}</p>
                 <div className="card-actions justify-center text-blue-700 text-2xl">
                   {team?.links?.facebook && (
-                    <Link href={team.links.facebook} target="_blank">
+                    <Link href={team?.links?.facebook} target="_blank">
                       <FaFacebookSquare />
                     </Link>
                   )}
                   {team?.links?.linkedin && (
-                    <Link href={team.links.linkedin} target="_blank">
+                    <Link href={team?.links?.linkedin} target="_blank">
                       <FaLinkedin />
                     </Link>
                   )}
                   {team?.links?.twitter && (
-                    <Link href={team.links.twitter} target="_blank">
+                    <Link href={team?.links?.twitter} target="_blank">
                       <FaTwitterSquare />
                     </Link>
                   )}
@@ -65,9 +71,17 @@ const Team = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-evenly mt-1">
-          {teams.length === current ||
-            (teams.length > current && (
+        <div className="flex justify-center gap-2 mt-1">
+          {current > 3 && (
+            <button
+              onClick={handlePrevSlide}
+              className="btn bg-[#ff3911c5] text-gray-300 hover:bg-[#FF3811] hover:text-white btn-circle "
+            >
+              ❮
+            </button>
+          )}
+          {teams?.length === current ||
+            (teams?.length > current && (
               <button
                 onClick={handleNextSlide}
                 className="btn bg-[#ff3911c5] text-gray-300 hover:bg-[#FF3811] hover:text-white btn-circle "
