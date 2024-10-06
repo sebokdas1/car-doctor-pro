@@ -5,6 +5,7 @@ import Services from "./Services";
 import Quary from "./Quary";
 import Products from "./Products";
 import CoreFeatures from "./CoreFeatures";
+import Team from "./Team";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <Services />
       <Quary />
       <Products />
+      <Team />
       <CoreFeatures />
     </div>
   );
