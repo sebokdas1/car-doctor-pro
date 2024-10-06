@@ -2,12 +2,14 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Page = ({ params }) => {
   const { data } = useSession();
   const [service, setService] = useState({});
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +41,7 @@ const Page = ({ params }) => {
         price: price,
       });
       toast.success(res?.data?.message);
+      router.push("/my-bookings");
     } catch (err) {
       toast.error(err?.data?.message);
     }
