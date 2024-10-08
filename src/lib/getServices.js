@@ -41,3 +41,17 @@ export const getProducts = async () => {
     throw error;
   }
 };
+
+//to get carts details
+// export const getCarts = async (email) => {
+//   try {
+//     const response = await axios.get(
+//       `${process.env.DOCTOR_PRO_BASE_URL}/cart/get-cart/${email}`
+//     );
+//     const carts = response.data;
+//     return carts;
+//   } catch (error) {
+//     console.error("Error fetching services:", error.message);
+//     throw error;
+//   }
+// };

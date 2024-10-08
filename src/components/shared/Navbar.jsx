@@ -1,13 +1,31 @@
 "use client";
+import axios from "axios";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { FiLogOut } from "react-icons/fi";
 import { IoSearch, IoCart } from "react-icons/io5";
 
 const Navbar = () => {
   const session = useSession();
+  const [carts, setCarts] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `/cart/get-cart/${session?.data?.user?.email}`
+        );
+        setCarts(response?.data);
+      } catch (err) {
+        console.log(err?.message);
+      }
+    };
+
+    fetchData();
+  }, [session?.data?.user?.email]);
+  // console.log(carts?.length);
+
   const navItems = [
     {
       title: "Home",
@@ -101,7 +119,10 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="flex items-center space-x-3">
-            <IoCart className="text-xl" />
+            <div className="indicator">
+              <span className="indicator-item indicator-end ">a</span>
+              <IoCart className="text-xl" />
+            </div>
             <IoSearch className="text-xl" />
 
             {session.status === "unauthenticated" && (
