@@ -64,13 +64,43 @@ const Testimonial = () => {
                   <FaQuoteRight className="text-[#ffd7ce] text-[56px] " />
                 </div>
                 <p className="text-gray-500">{test?.coment}</p>
-                <div className="flex text-yellow-400">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
+                <>
+                  {test?.rating === 5 && (
+                    <div className="flex text-yellow-400">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                    </div>
+                  )}
+                  {test?.rating === 4 && (
+                    <div className="flex text-yellow-400">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                    </div>
+                  )}
+                  {test?.rating === 3 && (
+                    <div className="flex text-yellow-400">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                    </div>
+                  )}
+                  {test?.rating === 2 && (
+                    <div className="flex text-yellow-400">
+                      <FaStar />
+                      <FaStar />
+                    </div>
+                  )}
+                  {test?.rating === 1 && (
+                    <div className="flex text-yellow-400">
+                      <FaStar />
+                    </div>
+                  )}
+                </>
               </div>
             </div>
           ))}
