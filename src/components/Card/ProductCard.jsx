@@ -1,9 +1,20 @@
+"use client";
 import Image from "next/image";
-import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 import React from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
+  const handleAddToCart = async () => {
+    try {
+      const res = await axios.post("/add-to-cart/api", product);
+      toast.success(res?.data?.message);
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
+  };
+
   return (
     <div className="card bg-base-100 w-96 shadow-xl">
       <figure className="px-6 bg-[#f3f3f3] py-6">
@@ -25,8 +36,13 @@ const ProductCard = ({ product }) => {
         </small>
         <p>{product?.title}</p>
         <div className="card-actions flex justify-between items-center">
-          <p className="text-[#FF3811]">${product?.price}</p>{" "}
-          <button className="btn btn-xs ">Add to Card</button>
+          <p className="text-[#FF3811]">${product?.price}</p>
+          <button
+            onClick={handleAddToCart}
+            className="btn btn-xs bg-orange-400 hover:bg-orange-500 text-white"
+          >
+            Add to Card
+          </button>
         </div>
       </div>
     </div>
