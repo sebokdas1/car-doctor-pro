@@ -23,8 +23,7 @@ const Navbar = () => {
     };
 
     fetchData();
-  }, [session?.data?.user?.email]);
-  // console.log(carts?.length);
+  }, [session?.data?.user?.email, carts]);
 
   const navItems = [
     {
@@ -120,7 +119,11 @@ const Navbar = () => {
         <div className="navbar-end">
           <div className="flex items-center space-x-3">
             <div className="indicator">
-              <span className="indicator-item indicator-end ">a</span>
+              {carts?.length > 0 && (
+                <span className="indicator-item indicator-end text-red-500 font-bold">
+                  {carts?.length}
+                </span>
+              )}
               <IoCart className="text-xl" />
             </div>
             <IoSearch className="text-xl" />
