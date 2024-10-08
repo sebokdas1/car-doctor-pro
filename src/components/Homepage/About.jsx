@@ -3,7 +3,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className=" hero min-h-screen">
+    <section className=" hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row">
         <div className="lg:w-1/2 relative">
           <Image
@@ -43,7 +43,7 @@ const About = () => {
           <button className="btn btn-primary">Get More Info</button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

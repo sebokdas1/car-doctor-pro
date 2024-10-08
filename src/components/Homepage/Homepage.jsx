@@ -6,6 +6,7 @@ import Quary from "./Quary";
 import Products from "./Products";
 import CoreFeatures from "./CoreFeatures";
 import Team from "./Team";
+import Testimonial from "./Testimonial";
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <Products />
       <Team />
       <CoreFeatures />
+      <Testimonial />
     </div>
   );
 };

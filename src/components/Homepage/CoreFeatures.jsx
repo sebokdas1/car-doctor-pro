@@ -3,7 +3,7 @@ import React from "react";
 
 const CoreFeatures = () => {
   return (
-    <div className="text-slate-800 mt-10">
+    <section className="text-slate-800 mt-10">
       <div className="text-center container mx-auto">
         <h3 className="text-2xl font-bold text-[#FF3811]">Core Features</h3>
         <h2 className="text-5xl">Why Choose Us</h2>
@@ -93,7 +93,7 @@ const CoreFeatures = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

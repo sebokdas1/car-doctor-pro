@@ -25,7 +25,7 @@ const Team = () => {
     await setCurrent(current + 3);
   };
   return (
-    <div className="container mx-auto mt-14">
+    <section className="container mx-auto mt-14">
       <div className="text-center">
         <h3 className="text-2xl font-bold text-[#FF3811]">Team</h3>
         <h2 className="text-5xl">Meet Our Team</h2>
@@ -91,7 +91,7 @@ const Team = () => {
             ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

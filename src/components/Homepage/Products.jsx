@@ -5,7 +5,7 @@ import ProductCard from "../Card/ProductCard";
 const Products = async () => {
   const { products } = await getProducts();
   return (
-    <div className="text-slate-800 mt-6">
+    <section className="text-slate-800 mt-6">
       <div className="text-center container mx-auto">
         <h3 className="text-2xl font-bold text-[#FF3811]">Popular Products</h3>
         <h2 className="text-5xl">Browse Our Products</h2>
@@ -20,7 +20,7 @@ const Products = async () => {
           <ProductCard product={product} key={product?._id} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

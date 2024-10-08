@@ -5,7 +5,7 @@ import { ImLocation } from "react-icons/im";
 
 const Quary = () => {
   return (
-    <div className="container mx-auto h-[250px] bg-black mt-12 text-white flex flex-col lg:flex-row gap-4 lg:gap-0 justify-center lg:justify-evenly items-center px-2 lg:px-7">
+    <section className="container mx-auto h-[250px] bg-black mt-12 text-white flex flex-col lg:flex-row gap-4 lg:gap-0 justify-center lg:justify-evenly items-center px-2 lg:px-7">
       <div className="flex items-center gap-2">
         <div className="text-4xl text-red-700">
           <LuCalendarClock />
@@ -33,7 +33,7 @@ const Quary = () => {
           <p className="text-xl">Liza Street, New York</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
