@@ -4,14 +4,25 @@ import { FaStar } from "react-icons/fa";
 import React from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const ProductCard = ({ product }) => {
+  const { data } = useSession();
+  const router = useRouter();
   const handleAddToCart = async () => {
-    try {
-      const res = await axios.post("/add-to-cart/api", product);
-      toast.success(res?.data?.message);
-    } catch (err) {
-      toast.error(err?.response?.data?.message);
+    if (data?.user?.email) {
+      try {
+        const res = await axios.post("/cart/add-to-cart/api", {
+          ...product,
+          email: data?.user?.email,
+        });
+        toast.success(res?.data?.message);
+      } catch (err) {
+        toast.error(err?.response?.data?.message);
+      }
+    } else {
+      router.push("/log-in");
     }
   };
 

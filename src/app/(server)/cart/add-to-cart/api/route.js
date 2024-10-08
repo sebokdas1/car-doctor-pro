@@ -4,12 +4,14 @@ import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
   const newCart = await request.json();
-  const cart = { ...newCart, _id: new ObjectId() };
   const db = await connectDB();
   const cartsCollection = db.collection("carts");
 
   try {
-    const res = await cartsCollection.insertOne(cart);
+    const res = await cartsCollection.insertOne({
+      ...newCart,
+      _id: new ObjectId(),
+    });
     return NextResponse.json(
       { message: "Added to Cart Successfully" },
       { status: 200 }
