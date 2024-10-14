@@ -120,7 +120,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3">
             <div className="indicator">
               {carts?.length > 0 && (
-                <span className="indicator-item indicator-end text-red-500 font-bold">
+                <span className="indicator-item indicator-center text-red-500 font-bold">
                   {carts?.length}
                 </span>
               )}
