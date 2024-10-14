@@ -118,14 +118,14 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="flex items-center space-x-3">
-            <div className="indicator">
+            <Link href={"/my-cart"} className="indicator">
               {carts?.length > 0 && (
                 <span className="indicator-item indicator-center text-red-500 font-bold">
                   {carts?.length}
                 </span>
               )}
               <IoCart className="text-xl" />
-            </div>
+            </Link>
             <IoSearch className="text-xl" />
 
             {session.status === "unauthenticated" && (

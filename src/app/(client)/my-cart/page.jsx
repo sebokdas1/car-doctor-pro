@@ -2,9 +2,14 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { React, useState, useEffect } from "react";
+import { HiArrowUturnLeft } from "react-icons/hi2";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const Page = () => {
+  const router = useRouter();
   const session = useSession();
   const [carts, setCarts] = useState([]);
   useEffect(() => {
@@ -21,6 +26,10 @@ const Page = () => {
 
     fetchData();
   }, [session?.data?.user?.email, carts]);
+
+  const handleBack = () => {
+    router.back();
+  };
   console.log(carts);
   return (
     <div className="container mx-auto">
@@ -43,7 +52,7 @@ const Page = () => {
       {carts?.map((cart) => (
         <div
           key={cart?._id}
-          className="lg:flex justify-between items-center mt-6 mx-2 lg:mx-0 shadow-md"
+          className="lg:flex justify-between items-center mt-6 px-2 shadow-md"
         >
           <div className="flex items-center space-x-6">
             <button className=" bg-[#444444]  text-white font-bold  btn-circle">
@@ -71,6 +80,24 @@ const Page = () => {
           </button>
         </div>
       ))}
+
+      <div className="flex justify-between mx-2 items-center mt-5">
+        <button
+          onClick={handleBack}
+          className="flex items-center space-x-3 hover:underline"
+        >
+          <h3>
+            <HiArrowUturnLeft />
+          </h3>
+          <h3>Continue Shopping</h3>
+        </button>
+        <button className="flex btn items-center space-x-3 hover:bg-red-500 hover:text-white">
+          <h3>
+            <RiDeleteBin6Line />
+          </h3>
+          <h3>Clear Shopping Cart</h3>
+        </button>
+      </div>
     </div>
   );
 };
