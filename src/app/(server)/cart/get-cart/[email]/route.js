@@ -1,6 +1,7 @@
 import { connectDB } from "@/lib/connectDB";
 import { NextResponse } from "next/server";
 
+//Get cart items
 export const GET = async (request, { params }) => {
   const db = await connectDB();
   const cartsCollection = db.collection("carts");
@@ -12,6 +13,7 @@ export const GET = async (request, { params }) => {
   }
 };
 
+//Delete cart items
 export const DELETE = async (request, { params }) => {
   const db = await connectDB();
   const cartsCollection = db.collection("carts");

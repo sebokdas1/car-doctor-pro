@@ -2,7 +2,6 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { React, useState, useEffect } from "react";
 import { HiArrowUturnLeft } from "react-icons/hi2";
@@ -29,30 +28,30 @@ const Page = () => {
     fetchData();
   }, [session?.data?.user?.email, carts]);
 
+  //Delete single cart
   const handleDeleteCart = async (id) => {
     try {
       const res = await axios.delete(`/cart/delete-cart/api/${id}`);
-      if (res?.response?.deletedCount > 0) {
-        toast.success(res?.message);
-      }
+      toast.success(res?.message);
     } catch (err) {
-      console.log(err.message);
+      toast.error(err?.message);
     }
   };
+
+  //Delete all cart items
   const handleDeleteAll = async (email) => {
     try {
       const res = await axios.delete(`/cart/get-cart/${email}`);
-
       toast.success(res?.message);
     } catch (err) {
-      console.log(err.message);
+      console.log(err?.message);
     }
   };
 
+  //back to shopping functionality
   const handleBack = () => {
     router.back();
   };
-  console.log(carts);
   return (
     <div className="container mx-auto">
       <div className="relative  h-72">
