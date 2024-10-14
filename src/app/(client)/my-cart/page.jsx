@@ -52,28 +52,26 @@ const Page = () => {
       {carts?.map((cart) => (
         <div
           key={cart?._id}
-          className="lg:flex justify-between items-center mt-6 px-2 shadow-md"
+          className="lg:flex justify-between  items-center mt-6 px-2 shadow-md"
         >
           <div className="flex items-center space-x-6">
             <button className=" bg-[#444444]  text-white font-bold  btn-circle">
               X
             </button>
             <Image
-              src={
-                "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              }
+              src={cart?.img}
               alt="image"
               width={150}
               height={150}
               className="rounded"
             />
             <div>
-              <h4 className="text-xl font-bold">product name</h4>
+              <h4 className="text-xl font-bold">{cart?.title}</h4>
               <h6 className="text-gray-500">Color: Green</h6>
               <h6 className="text-gray-500">Size: S</h6>
             </div>
           </div>
-          <h6 className="font-bold">$25.00</h6>
+          <h6 className="font-bold">${cart?.price}</h6>
           <h6 className="font-bold">22-10-2022</h6>
           <button className="bg-rose-500 px-3 text-white font-semibold py-2 rounded-lg  ">
             Checkout
@@ -84,14 +82,14 @@ const Page = () => {
       <div className="flex justify-between mx-2 items-center mt-5">
         <button
           onClick={handleBack}
-          className="flex items-center space-x-3 hover:underline"
+          className="flex items-center lg:space-x-3 hover:underline"
         >
           <h3>
             <HiArrowUturnLeft />
           </h3>
           <h3>Continue Shopping</h3>
         </button>
-        <button className="flex btn items-center space-x-3 hover:bg-red-500 hover:text-white">
+        <button className="flex btn items-center lg:space-x-3 hover:bg-red-500 hover:text-white">
           <h3>
             <RiDeleteBin6Line />
           </h3>
