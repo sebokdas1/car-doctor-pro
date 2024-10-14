@@ -7,11 +7,13 @@ import { useRouter } from "next/navigation";
 import { React, useState, useEffect } from "react";
 import { HiArrowUturnLeft } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const router = useRouter();
   const session = useSession();
   const [carts, setCarts] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,6 +28,17 @@ const Page = () => {
 
     fetchData();
   }, [session?.data?.user?.email, carts]);
+
+  const handleDeleteCart = async (id) => {
+    try {
+      const res = await axios.delete(`/cart/delete-cart/api/${id}`);
+      if (res?.response?.deletedCount > 0) {
+        toast.success(res?.message);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   const handleBack = () => {
     router.back();
@@ -55,7 +68,10 @@ const Page = () => {
           className="lg:flex justify-between  items-center mt-6 px-2 shadow-md"
         >
           <div className="flex items-center space-x-6">
-            <button className=" bg-[#444444]  text-white font-bold  btn-circle">
+            <button
+              onClick={() => handleDeleteCart(cart?._id)}
+              className=" bg-[#444444]  text-white font-bold  btn-circle"
+            >
               X
             </button>
             <Image
