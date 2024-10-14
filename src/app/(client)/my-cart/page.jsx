@@ -39,6 +39,15 @@ const Page = () => {
       console.log(err.message);
     }
   };
+  const handleDeleteAll = async (email) => {
+    try {
+      const res = await axios.delete(`/cart/get-cart/${email}`);
+
+      toast.success(res?.message);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   const handleBack = () => {
     router.back();
@@ -105,7 +114,10 @@ const Page = () => {
           </h3>
           <h3>Continue Shopping</h3>
         </button>
-        <button className="flex btn items-center lg:space-x-3 hover:bg-red-500 hover:text-white">
+        <button
+          onClick={() => handleDeleteAll(session?.data?.user?.email)}
+          className="flex btn items-center lg:space-x-3 hover:bg-red-500 hover:text-white"
+        >
           <h3>
             <RiDeleteBin6Line />
           </h3>
