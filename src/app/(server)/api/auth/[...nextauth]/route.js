@@ -3,6 +3,7 @@ import NextAuth from "next-auth/next";
 import bcrypt from "bcrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import EmailProvider from "next-auth/providers/email";
 
 const handler = NextAuth({
   secret: process.env.DOCTOR_PRO_AUTH_SECRET,
