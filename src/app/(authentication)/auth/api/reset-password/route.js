@@ -8,7 +8,7 @@ export const POST = async (request) => {
 
   try {
     // Verify the token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.DOCTOR_PRO_AUTH_SECRET);
     const { email } = decoded;
 
     const db = await connectDB();
