@@ -2,14 +2,14 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+  const router = useRouter();
+  console.log(router);
+  //   const { token } = router?.query; // get the token from the URL
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -19,13 +19,13 @@ const ResetPassword = () => {
       return;
     }
 
-    try {
-      await axios.post("/auth/api/reset-password", { password, token });
-      toast.success("Password reset successfully. You can now log in.");
-      router.push("/login");
-    } catch (error) {
-      toast.error(error?.response?.data?.message || "An error occurred.");
-    }
+    // try {
+    //   await axios.post("/auth/api/reset-password", { password, token });
+    //   toast.success("Password reset successfully. You can now log in.");
+    //   router.push("/login");
+    // } catch (error) {
+    //   toast.error(error?.response?.data?.message || "An error occurred.");
+    // }
   };
 
   return (
