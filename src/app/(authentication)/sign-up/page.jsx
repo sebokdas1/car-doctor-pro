@@ -12,7 +12,7 @@ const Signup = () => {
       email: event.target.email.value,
       password: event.target.password.value,
     };
-    const resp = await fetch(`${process.env.DOCTOR_PRO_BASE_URL}/sign-up/api`, {
+    const resp = await fetch(`/sign-up/api`, {
       method: "POST",
       body: JSON.stringify(newUser),
       headers: {

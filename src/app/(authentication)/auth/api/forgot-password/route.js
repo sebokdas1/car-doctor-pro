@@ -1,21 +1,19 @@
 import { connectDB } from "@/lib/connectDB";
 import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
-
-  const { email } = req.body;
+export const POST = async (request) => {
+  console.log(request);
+  const { email } = await request.json();
   if (!email) {
-    return res.status(400).json({ message: "Email is required" });
+    return NextResponse.json({ message: "Email is required" }, { status: 400 });
   }
 
   const db = await connectDB();
   const user = await db.collection("users").findOne({ email });
   if (!user) {
-    return res.status(404).json({ message: "User not found" });
+    return NextResponse.json({ message: "User not found" }, { status: 404 });
   }
 
   // Generate a password reset token (using JWT for simplicity)
@@ -37,10 +35,10 @@ export default async function handler(req, res) {
     },
   });
 
-  const resetLink = `${process.env.DOCTOR_PRO_BASE_URL}/reset-password?token=${token}`;
+  const resetLink = `${process.env.DOCTOR_PRO_MAIN_URL}/reset-password?token=${token}`;
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: process.env.DOCTOR_PRO_NODEMAILER_EMAIL,
     to: email,
     subject: "Password Reset",
     text: `Click the link to reset your password: ${resetLink}`,
@@ -48,10 +46,14 @@ export default async function handler(req, res) {
 
   try {
     await transporter.sendMail(mailOptions);
-    return res
-      .status(200)
-      .json({ message: "Password reset link sent to your email." });
+    return NextResponse.json(
+      { message: "Password reset link sent to your email." },
+      { status: 200 }
+    );
   } catch (error) {
-    return res.status(500).json({ message: "Error sending email." });
+    return NextResponse.json(
+      { message: "Error sending email." },
+      { status: 500 }
+    );
   }
-}
+};
