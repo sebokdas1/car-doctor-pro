@@ -27,7 +27,7 @@ const Testimonial = () => {
       <div className="lg:w-[90%] mx-auto">
         <div className="text-center">
           <h3 className="text-2xl font-bold text-[#FF3811]">Testimonial</h3>
-          <h2 className="text-5xl">What Customer Says</h2>
+          <h2 className="text-4xl">What Customer Says</h2>
           <p>
             the majority have suffered alteration in some form, by injected
             humour, or randomised <br />

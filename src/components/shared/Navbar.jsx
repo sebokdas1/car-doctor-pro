@@ -55,7 +55,7 @@ const Navbar = () => {
             <div tabIndex={0} className=" lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-10 w-10"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -74,7 +74,7 @@ const Navbar = () => {
                 <Link
                   key={item.title}
                   href={item.path}
-                  className="font-semibold mt-3  border-b border-gray-500 hover:text-primary duration-300"
+                  className="font-semibold mt-3 mb-3 text-xl  border-b border-gray-500 hover:text-primary duration-300"
                 >
                   {item.title}
                 </Link>
@@ -82,10 +82,18 @@ const Navbar = () => {
               {session.status === "authenticated" && (
                 <Link
                   href={"/my-bookings"}
-                  className="font-semibold mt-3  border-b border-gray-500 hover:text-primary duration-300"
+                  className="font-semibold mt-3 mb-3 text-xl border-b border-gray-500 hover:text-primary duration-300"
                 >
                   myBookings
                 </Link>
+              )}
+              {session.status === "authenticated" && (
+                <button
+                  onClick={() => signOut()}
+                  className="lg:hidden btn bg-orange-600 mt-2 text-white"
+                >
+                  Log Out
+                </button>
               )}
             </div>
           </div>
@@ -128,9 +136,9 @@ const Navbar = () => {
                   {carts?.length}
                 </span>
               )}
-              <IoCart className="text-xl" />
+              <IoCart className="text-4xl lg:text-xl" />
             </Link>
-            <IoSearch className="text-xl" />
+            <IoSearch className="text-4xl lg:text-xl" />
 
             {session.status === "unauthenticated" && (
               <Link href="/log-in" className="btn btn-primary px-3 lg:px-8">
@@ -149,11 +157,6 @@ const Navbar = () => {
                 className="btn btn-primary hidden lg:block px-8"
               >
                 LogOut
-              </button>
-            )}
-            {session.status === "authenticated" && (
-              <button onClick={() => signOut()} className="lg:hidden">
-                <FiLogOut />
               </button>
             )}
           </div>

@@ -15,12 +15,10 @@ const Team = () => {
   }, []);
 
   const handlePrevSlide = async () => {
-    // console.log(current);
     await setPrevious(previous - 3);
     await setCurrent(current - 3);
   };
   const handleNextSlide = async () => {
-    // console.log(current);
     await setPrevious(previous + 3);
     await setCurrent(current + 3);
   };
@@ -28,7 +26,7 @@ const Team = () => {
     <section className="container mx-auto mt-14">
       <div className="text-center">
         <h3 className="text-2xl font-bold text-[#FF3811]">Team</h3>
-        <h2 className="text-5xl">Meet Our Team</h2>
+        <h2 className="text-4xl">Meet Our Team</h2>
         <p>
           the majority have suffered alteration in some form, by injected
           humour, or randomised <br />

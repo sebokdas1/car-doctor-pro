@@ -25,7 +25,10 @@ const Page = () => {
         console.log(err?.message);
       }
     };
-    fetchData();
+    if (session?.data?.user?.email) {
+      fetchData();
+    }
+    return;
   }, [session?.data?.user?.email, carts]);
 
   //Delete single cart
@@ -56,12 +59,11 @@ const Page = () => {
     <div className="container mx-auto">
       <div className="relative  h-72">
         <Image
-          className="absolute h-72 w-full left-0 top-0 object-cover"
+          className="absolute h-72 w-full  lg:w-[90vw] left-0 top-0 object-cover"
           src={"/assets/images/about_us/parts.jpg"}
           alt="service"
           width={1920}
           height={1080}
-          style={{ width: "90vw" }}
         />
         <div className="absolute h-full left-0 top-0 flex items-center justify-center bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] ">
           <h1 className="text-white text-3xl font-bold flex justify-center  items-center ml-8">
@@ -73,7 +75,7 @@ const Page = () => {
       {carts?.map((cart) => (
         <div
           key={cart?._id}
-          className="lg:flex justify-between  items-center mt-6 px-2 shadow-md"
+          className="lg:flex justify-between  items-center mt-6 px-2 shadow-md pb-2 lg:pb-0"
         >
           <div className="flex items-center space-x-6">
             <button
