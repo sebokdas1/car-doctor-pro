@@ -34,7 +34,7 @@ export const POST = async (request) => {
     },
   });
 
-  const resetLink = `${process.env.DOCTOR_PRO_BASE_URL}/reset-password?token=${token}`;
+  const resetLink = `${process.env.DOCTOR_PRO_MAIN_URL}/reset-password?token=${token}`;
 
   const mailOptions = {
     from: process.env.DOCTOR_PRO_NODEMAILER_EMAIL,

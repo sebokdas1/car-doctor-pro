@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [newError, setNewError] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
@@ -15,7 +16,7 @@ const ResetPassword = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
+      setNewError("Passwords do not match");
       return;
     }
 
@@ -24,40 +25,44 @@ const ResetPassword = () => {
       toast.success("Password reset successfully. You can now log in.");
       router.push("/log-in");
     } catch (error) {
-      toast.error(error?.response?.data?.message || "An error occurred.");
+      setNewErrorr(error?.response?.data?.message || "An error occurred.");
     }
   };
 
   return (
     <div className="container mx-auto">
-      <h1>Reset Password</h1>
-      <form onSubmit={handleResetPassword}>
-        <label htmlFor="password">New Password:</label>
-        <br />
-        <input
-          className="bg-slate-300 p-3"
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <br />
-        <input
-          className="bg-slate-300 p-3"
-          type="password"
-          id="confirmPassword"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />{" "}
-        <br />
-        <button type="submit" className="btn btn-primary mt-3">
-          Reset Password
-        </button>
-      </form>
+      <div className="border-2 p-12 lg:w-[50%] mx-auto my-5">
+        <h6 className="text-3xl font-semibold text-primary text-center mb-4 lg:mb-12">
+          Forgot Password
+        </h6>
+        <form onSubmit={handleResetPassword}>
+          <label htmlFor="password">Password</label> <br />
+          <input
+            onFocus={() => setNewError("")}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="mt-3 w-full input input-bordered"
+          />
+          <br />
+          <br />
+          <label htmlFor="confirmPassword">Confirm Password</label> <br />
+          <input
+            onFocus={() => setNewError("")}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            className="mt-3 w-full input input-bordered"
+          />
+          <br />
+          {newError && <p className="text-red-500 mt-1">{newError}</p>}
+          <button type="submit" className="w-full btn btn-primary mt-8 text-lg">
+            Reset Password
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
