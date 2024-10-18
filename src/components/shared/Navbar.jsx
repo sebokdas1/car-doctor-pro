@@ -22,7 +22,11 @@ const Navbar = () => {
       }
     };
 
-    fetchData();
+    if (session?.data?.user?.email) {
+      fetchData();
+    }
+    return;
+    // session?.data?.user?.email, carts
   }, [session?.data?.user?.email, carts]);
 
   const navItems = [

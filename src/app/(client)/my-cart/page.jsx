@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/app/loading";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -24,7 +25,6 @@ const Page = () => {
         console.log(err?.message);
       }
     };
-
     fetchData();
   }, [session?.data?.user?.email, carts]);
 
@@ -44,7 +44,7 @@ const Page = () => {
       const res = await axios.delete(`/cart/get-cart/${email}`);
       toast.success(res?.message);
     } catch (err) {
-      console.log(err?.message);
+      toast.error(err?.message);
     }
   };
 

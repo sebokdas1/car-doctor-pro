@@ -2,25 +2,39 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import React from "react";
+import React, { useState } from "react";
 import SocialSignIn from "@/components/shared/SocialSignIn";
 import { useSearchParams } from "next/navigation";
 
 const Login = () => {
   const searchParams = useSearchParams();
-  const path = searchParams.get("redirect");
+  const path = searchParams.get("redirect") || "/";
+  const [newError, setNewError] = useState();
 
   const handleLogIn = async (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
+
+    if (!email || !password) {
+      setNewError("Please enter both email and password");
+      return;
+    }
+
     const resp = await signIn("credentials", {
       email,
       password,
-      redirect: true,
-      callbackUrl: path ? path : "/",
+      redirect: false,
+      callbackUrl: path,
     });
+
+    if (resp.error) {
+      setNewError(resp.error);
+    } else {
+      window.location.href = resp.url || "/";
+    }
   };
+
   return (
     <div className="container lg:px-24 mx-auto py-18">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
@@ -39,6 +53,7 @@ const Login = () => {
           <form onSubmit={handleLogIn}>
             <label htmlFor="email">Email</label> <br />
             <input
+              onFocus={() => setNewError("")}
               type="email"
               name="email"
               placeholder="your email"
@@ -47,15 +62,17 @@ const Login = () => {
             <br /> <br />
             <label htmlFor="password">Password</label> <br />
             <input
+              onFocus={() => setNewError("")}
               type="password"
               name="password"
               placeholder="your password"
               className="w-full mt-3 input input-bordered"
             />
             <br />
+            {newError && <p className="text-red-500 mt-1">{newError}</p>}
             <button
               type="submit"
-              className="w-full btn btn-primary mt-12 text-lg"
+              className="w-full btn btn-primary mt-8 text-lg"
             >
               Log In
             </button>
