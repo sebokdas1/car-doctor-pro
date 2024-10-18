@@ -20,11 +20,6 @@ export const POST = async (request) => {
     expiresIn: "1h",
   });
 
-  // Save the token in the database (optional)
-  await db
-    .collection("users")
-    .updateOne({ email }, { $set: { resetToken: token } });
-
   // Send reset link to user's email
   const transporter = nodemailer.createTransport({
     service: "gmail",
