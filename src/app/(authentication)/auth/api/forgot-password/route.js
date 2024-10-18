@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export const POST = async (request) => {
-  console.log(request);
   const { email } = await request.json();
   if (!email) {
     return NextResponse.json({ message: "Email is required" }, { status: 400 });

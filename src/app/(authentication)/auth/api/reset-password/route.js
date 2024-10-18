@@ -1,13 +1,10 @@
 import { connectDB } from "@/lib/connectDB";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server";
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
-
-  const { password, token } = req.body;
+export const POST = async (request) => {
+  const { password, token } = await request.json();
 
   try {
     // Verify the token
@@ -17,7 +14,7 @@ export default async function handler(req, res) {
     const db = await connectDB();
     const user = await db.collection("users").findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
     // Hash the new password
@@ -28,8 +25,14 @@ export default async function handler(req, res) {
       .collection("users")
       .updateOne({ email }, { $set: { password: hashedPassword } });
 
-    return res.status(200).json({ message: "Password reset successfully." });
+    return NextResponse.json(
+      { message: "Password reset successfully." },
+      { status: 200 }
+    );
   } catch (error) {
-    return res.status(400).json({ message: "Invalid or expired token." });
+    return NextResponse.json(
+      { message: "Invalid or expired token." },
+      { status: 400 }
+    );
   }
-}
+};
