@@ -4,7 +4,9 @@ import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
-  const { password, token } = await request.json();
+  const data = await request.json();
+  const token = data?.token;
+  const password = data?.password;
 
   try {
     // Verify the token
