@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 
 const AuthProvider = ({ children }) => {
   return (
-    <SessionProvider>
+    <SessionProvider basePath="/api/auth">
       <Suspense>{children}</Suspense>
     </SessionProvider>
   );
