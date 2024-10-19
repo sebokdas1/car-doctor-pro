@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 
 export const middleware = async (request) => {
   // For production token
-  const token = cookies(request).get("__Secure-next-auth.session-token");
+  // const token = cookies(request).get("__Secure-next-auth.session-token");
   // For development token
-  // const token = cookies(request).get("next-auth.session-token");
+  const token = cookies(request).get("next-auth.session-token");
   const pathname = await request?.nextUrl.pathname;
   if (pathname.includes("api")) {
     return NextResponse.next();

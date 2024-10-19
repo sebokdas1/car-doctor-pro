@@ -20,6 +20,7 @@ const Navbar = () => {
         console.log(err?.message);
       }
     };
+    fetchData();
   }, [session?.data?.user?.email, carts]);
 
   const navItems = [
@@ -111,7 +112,7 @@ const Navbar = () => {
                 {item?.title}
               </Link>
             ))}
-            {session.status === "authenticated" && (
+            {session?.status === "authenticated" && (
               <Link
                 href={"/my-bookings"}
                 className="font-semibold hover:text-primary duration-300"
@@ -133,18 +134,18 @@ const Navbar = () => {
             </Link>
             <IoSearch className="text-4xl lg:text-xl" />
 
-            {session.status === "unauthenticated" && (
+            {session?.status === "unauthenticated" && (
               <Link href="/log-in" className="btn btn-primary px-3 lg:px-8">
                 Login
               </Link>
             )}
 
-            {session.status === "loading" && (
+            {session?.status === "loading" && (
               <div className="flex justify-center items-center">
                 <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
               </div>
             )}
-            {session.status === "authenticated" && (
+            {session?.status === "authenticated" && (
               <button
                 onClick={() => signOut()}
                 className="btn btn-primary hidden lg:block px-8"
