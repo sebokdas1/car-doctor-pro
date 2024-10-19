@@ -77,6 +77,12 @@ const Login = () => {
               Log In
             </button>
           </form>
+          <Link
+            href={"/forgot-password"}
+            className="text-orange-400 mt-1 hover:underline"
+          >
+            Forgot Password?
+          </Link>
           <div>
             <h6 className="my-4 text-center">or sign in with</h6>
             <SocialSignIn />

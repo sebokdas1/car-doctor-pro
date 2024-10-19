@@ -16,7 +16,6 @@ export const POST = async (request) => {
     return NextResponse.json({ message: "User not found" }, { status: 404 });
   }
 
-  // Generate a password reset token (using JWT for simplicity)
   const token = jwt.sign({ email }, process.env.DOCTOR_PRO_AUTH_SECRET, {
     expiresIn: "1h",
   });
@@ -30,7 +29,7 @@ export const POST = async (request) => {
     },
   });
 
-  const resetLink = `${process.env.NEXTAUTH_URL}/reset-password?token=${token}`;
+  const resetLink = `${process.env.DOCTOR_PRO_PRODUCTION_URL}/reset-password?token=${token}`;
 
   const mailOptions = {
     from: {
