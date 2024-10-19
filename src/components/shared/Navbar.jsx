@@ -4,7 +4,6 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { React, useState, useEffect } from "react";
-import { FiLogOut } from "react-icons/fi";
 import { IoSearch, IoCart } from "react-icons/io5";
 
 const Navbar = () => {
@@ -21,12 +20,6 @@ const Navbar = () => {
         console.log(err?.message);
       }
     };
-
-    if (session?.data?.user?.email) {
-      fetchData();
-    }
-    return;
-    // session?.data?.user?.email, carts
   }, [session?.data?.user?.email, carts]);
 
   const navItems = [
@@ -72,11 +65,11 @@ const Navbar = () => {
             <div className="menu menu-sm dropdown-content bg-base-100 z-[1] mt-3 w-52 p-2">
               {navItems.map((item) => (
                 <Link
-                  key={item.title}
-                  href={item.path}
+                  key={item?.title}
+                  href={item?.path}
                   className="font-semibold mt-3 mb-3 text-xl  border-b border-gray-500 hover:text-primary duration-300"
                 >
-                  {item.title}
+                  {item?.title}
                 </Link>
               ))}
               {session.status === "authenticated" && (
@@ -111,11 +104,11 @@ const Navbar = () => {
           <div className="flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
-                key={item.title}
-                href={item.path}
+                key={item?.title}
+                href={item?.path}
                 className="font-semibold hover:text-primary duration-300"
               >
-                {item.title}
+                {item?.title}
               </Link>
             ))}
             {session.status === "authenticated" && (
