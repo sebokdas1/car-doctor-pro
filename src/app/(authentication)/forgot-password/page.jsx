@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/auth/api/forgot-password", { email });
+      await axios.post("/authenticate/auth/api/forgot-password", { email });
       toast.success("Password reset link sent to your email.");
     } catch (error) {
       setNewError(error?.response?.data?.message || "An error occurred.");

@@ -21,7 +21,10 @@ const ResetPassword = () => {
     }
 
     try {
-      await axios.post("/auth/api/reset-password", { password, token });
+      await axios.post("/authenticate/auth/api/reset-password", {
+        password,
+        token,
+      });
       toast.success("Password reset successfully. You can now log in.");
       router.push("/log-in");
     } catch (error) {
