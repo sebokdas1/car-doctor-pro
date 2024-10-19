@@ -25,10 +25,10 @@ const ResetPassword = () => {
         password,
         token,
       });
-      toast.success("Password reset successfully. You can now log in.");
       router.push("/log-in");
+      toast.success("Password reset successfully. You can now log in.");
     } catch (error) {
-      setNewErrorr(error?.response?.data?.message || "An error occurred.");
+      setNewError(error?.response?.data?.message || "An error occurred.");
     }
   };
 
