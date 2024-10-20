@@ -3,6 +3,7 @@ import NextAuth from "next-auth/next";
 import bcrypt from "bcrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { NextResponse } from "next/server";
 
 const handler = NextAuth({
   secret: process.env.DOCTOR_PRO_AUTH_SECRET,
@@ -20,6 +21,9 @@ const handler = NextAuth({
         const { email, password } = credentials;
         if (!email || !password) {
           throw new Error("Email and password are required");
+          // return NextResponse.json({
+          //   message: "Email and password are required",
+          // });
         }
 
         const db = await connectDB();
@@ -27,6 +31,7 @@ const handler = NextAuth({
 
         if (!currentUser) {
           throw new Error("User not found");
+          // return NextResponse.json({ message: "User not found" });
         }
 
         const passwordMatch = bcrypt.compareSync(
@@ -36,6 +41,7 @@ const handler = NextAuth({
 
         if (!passwordMatch) {
           throw new Error("Incorrect password");
+          // return NextResponse.json({ message: "Incorrect password" });
         }
 
         return currentUser;
@@ -66,6 +72,9 @@ const handler = NextAuth({
             });
             if (!res.insertedId) {
               throw new Error("Failed to insert user into database");
+              // return NextResponse.json({
+              //   message: "Failed to insert user into database",
+              // });
             }
           }
           return true;
@@ -76,18 +85,18 @@ const handler = NextAuth({
       }
       return true;
     },
-    async jwt({ token, user, account }) {
-      if (account && user) {
-        token.id = user._id;
-        token.email = user.email;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      session.user.id = token?.id;
-      session.user.email = token?.email;
-      return session;
-    },
+    // async jwt({ token, user, account }) {
+    //   if (account && user) {
+    //     token.id = user._id;
+    //     token.email = user.email;
+    //   }
+    //   return token;
+    // },
+    // async session({ session, token }) {
+    //   session.user.id = token?.id;
+    //   session.user.email = token?.email;
+    //   return session;
+    // },
   },
 });
 
