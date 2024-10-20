@@ -8,15 +8,12 @@ export const POST = async (request) => {
 
   try {
     await bookingsCollection.insertOne(newBooking);
-    return NextResponse.json(
-      { message: "Booked Successfully" },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "Booked Successfully", status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: "Something Went Wrong" },
-      { error: error.message },
-      { status: 400 }
-    );
+    return NextResponse.json({
+      message: "Something Went Wrong",
+      error: error.message,
+      status: 400,
+    });
   }
 };

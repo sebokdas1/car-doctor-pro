@@ -11,10 +11,10 @@ export const POST = async (request) => {
     const exist = await userCollection.findOne({ email: newUser.email });
 
     if (exist) {
-      return NextResponse.json(
-        { error: "User already registered" },
-        { status: 409 }
-      );
+      return NextResponse.json({
+        error: "User already registered",
+        status: 409,
+      });
     }
 
     const hashedPassword = await bcrypt.hash(newUser.password, 14);
@@ -23,14 +23,14 @@ export const POST = async (request) => {
       password: hashedPassword,
     });
 
-    return NextResponse.json(
-      { message: "Successfully registered" },
-      { status: 200 }
-    );
+    return NextResponse.json({
+      message: "Successfully registered",
+      status: 200,
+    });
   } catch (error) {
-    return NextResponse.json(
-      { error: "An error occurred during registration" },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      error: "An error occurred during registration",
+      status: 500,
+    });
   }
 };

@@ -12,15 +12,15 @@ export const POST = async (request) => {
       ...newCart,
       _id: new ObjectId(),
     });
-    return NextResponse.json(
-      { message: "Added to Cart Successfully" },
-      { status: 200 }
-    );
+    return NextResponse.json({
+      message: "Added to Cart Successfully",
+      status: 200,
+    });
   } catch (error) {
-    return NextResponse.json(
-      { message: "Something Went Wrong" },
-      { error: error.message },
-      { status: 400 }
-    );
+    return NextResponse.json({
+      message: "Something Went Wrong",
+      error: error.message,
+      status: 400,
+    });
   }
 };

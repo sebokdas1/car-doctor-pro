@@ -8,9 +8,9 @@ export const GET = async (request, { params }) => {
     const service = await servicesCollection.findOne({ _id: params.id });
     return NextResponse.json({ service }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: "data not found" },
-      { error: error.message }
-    );
+    return NextResponse.json({
+      message: "data not found",
+      error: error.message,
+    });
   }
 };

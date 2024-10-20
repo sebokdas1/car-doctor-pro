@@ -10,10 +10,10 @@ export const GET = async (request, { params }) => {
       .toArray();
     return NextResponse.json({ bookings }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: "something went wrong" },
-      { error: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      message: "something went wrong",
+      error: error.message,
+      status: 500,
+    });
   }
 };

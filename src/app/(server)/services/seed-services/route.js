@@ -9,13 +9,13 @@ export const GET = async () => {
     await servicesCollection.deleteMany();
     await servicesCollection.insertMany(services);
     return NextResponse.json(
-      { message: "Services Seeded Succesfully" },
-      { status: 200 }
+      { message: "Services Seeded Succesfully", status: 200 },
+      {}
     );
   } catch (error) {
-    return NextResponse.json(
-      { message: "something went wrong" },
-      { error: error.message }
-    );
+    return NextResponse.json({
+      message: "something went wrong",
+      error: error.message,
+    });
   }
 };

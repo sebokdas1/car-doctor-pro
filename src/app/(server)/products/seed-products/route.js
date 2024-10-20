@@ -8,14 +8,14 @@ export const GET = async () => {
   try {
     await productsCollection.deleteMany();
     await productsCollection.insertMany(products);
-    return NextResponse.json(
-      { message: "products Seeded Succesfully" },
-      { status: 200 }
-    );
+    return NextResponse.json({
+      message: "products Seeded Succesfully",
+      status: 200,
+    });
   } catch (error) {
-    return NextResponse.json(
-      { message: "something went wrong" },
-      { error: error.message }
-    );
+    return NextResponse.json({
+      message: "something went wrong",
+      error: error.message,
+    });
   }
 };

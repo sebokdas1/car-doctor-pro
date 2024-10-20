@@ -10,12 +10,12 @@ export const DELETE = async (request, { params }) => {
     await bookingsCollection.deleteOne({
       _id: new ObjectId(params.id),
     });
-    return NextResponse.json({ message: "bookings deleted" }, { status: 200 });
+    return NextResponse.json({ message: "bookings deleted", status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: "something went wrong" },
-      { error: error.message }
-    );
+    return NextResponse.json({
+      message: "something went wrong",
+      error: error.message,
+    });
   }
 };
 
@@ -36,18 +36,16 @@ export const PATCH = async (request, { params }) => {
       },
       { upsert: true }
     );
-    return NextResponse.json(
-      {
-        message: "updated the booking",
-        response: resp,
-      },
-      { status: 200 }
-    );
+    return NextResponse.json({
+      message: "updated the booking",
+      status: 200,
+      response: resp,
+    });
   } catch (error) {
-    return NextResponse.json(
-      { message: "something went wrong" },
-      { error: error.message }
-    );
+    return NextResponse.json({
+      message: "something went wrong",
+      error: error.message,
+    });
   }
 };
 
@@ -59,14 +57,15 @@ export const GET = async (request, { params }) => {
     const resp = await bookingsCollection.findOne({
       _id: new ObjectId(params.id),
     });
-    return NextResponse.json(
-      { message: "booking found", response: resp },
-      { status: 200 }
-    );
+    return NextResponse.json({
+      message: "booking found",
+      response: resp,
+      status: 200,
+    });
   } catch (error) {
-    return NextResponse.json(
-      { message: "something went wrong" },
-      { error: error.message }
-    );
+    return NextResponse.json({
+      message: "something went wrong",
+      error: error.message,
+    });
   }
 };

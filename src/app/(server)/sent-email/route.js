@@ -21,12 +21,12 @@ export const POST = async (request) => {
       subject: data.subject,
       text: data.text,
     });
-    return NextResponse.json({ message: "Email sent" }, { status: 200 });
+    return NextResponse.json({ message: "Email sent", status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: "Error sending email" },
-      { error: error.message },
-      { status: 400 }
-    );
+    return NextResponse.json({
+      message: "Error sending email",
+      error: error.message,
+      status: 400,
+    });
   }
 };
