@@ -1,6 +1,7 @@
 "use client";
 
 export default function GlobalError({ error, reset }) {
+  console.log(error);
   return (
     <html>
       <body>
