@@ -14,7 +14,7 @@ export const middleware = async (request) => {
 
   if (!token) {
     return NextResponse.redirect(
-      new URL(`/log-in?redirect=${pathname}`, request?.url)
+      new URL(`/log-in?redirect=${pathname}`, request.url)
     );
   }
   return NextResponse.next();

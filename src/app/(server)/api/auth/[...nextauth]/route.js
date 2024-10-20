@@ -12,7 +12,7 @@ const handler = NextAuth({
   },
   providers: [
     CredentialsProvider({
-      credentials: {
+      Credentials: {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
