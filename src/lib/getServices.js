@@ -6,10 +6,10 @@ export const getServices = async () => {
     const response = await axios.get(
       `${process.env.DOCTOR_PRO_BASE_URL}/services/api/get-all`
     );
-    const services = response.data;
+    const services = response?.data;
     return services;
   } catch (error) {
-    console.error("Error fetching services:", error.message);
+    console.error("Error fetching services:", error?.message);
     throw error;
   }
 };
@@ -20,10 +20,10 @@ export const getServiceDetails = async (id) => {
     const response = await axios.get(
       `${process.env.DOCTOR_PRO_BASE_URL}/services/api/${id}`
     );
-    const service = response.data;
+    const service = response?.data;
     return service;
   } catch (error) {
-    console.error("Error fetching services:", error.message);
+    console.error("Error fetching services:", error?.message);
     throw error;
   }
 };
@@ -34,10 +34,10 @@ export const getProducts = async () => {
     const response = await axios.get(
       `${process.env.DOCTOR_PRO_BASE_URL}/products/api/get-all`
     );
-    const products = response.data;
+    const products = response?.data;
     return products;
   } catch (error) {
-    console.error("Error fetching products:", error.message);
+    console.error("Error fetching products:", error?.message);
     throw error;
   }
 };

@@ -22,7 +22,7 @@ const Page = ({ params }) => {
     };
 
     fetchData();
-  }, [params.id]);
+  }, [params?.id]);
 
   const { _id, title, img, price } = service || {};
 

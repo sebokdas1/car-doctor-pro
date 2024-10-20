@@ -19,19 +19,17 @@ const Signup = () => {
       setNewError("Please enter both email and password");
       return;
     }
-
     const newUser = {
       name,
       email,
       password,
     };
-
     try {
       const resp = await axios.post("/sign-up/api", newUser);
 
       if (resp?.status === 200) {
-        toast.success(resp?.data?.message);
         router.push("/log-in");
+        toast.success(resp?.data?.message);
       }
     } catch (error) {
       if (error.response) {
