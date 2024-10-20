@@ -8,7 +8,7 @@ export const GET = async (request, { params }) => {
     const bookings = await bookingsCollection
       .find({ email: params.email })
       .toArray();
-    return NextResponse.json(bookings, { status: 200 });
+    return NextResponse.json({ bookings }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "something went wrong" },

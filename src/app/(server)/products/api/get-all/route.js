@@ -6,7 +6,7 @@ export const GET = async () => {
   const productsCollection = await db.collection("products");
   try {
     const products = await productsCollection.find().toArray();
-    return NextResponse.json(products, { status: 200 });
+    return NextResponse.json({ products }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "data not found" },
