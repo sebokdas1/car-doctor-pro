@@ -20,7 +20,9 @@ const Navbar = () => {
         console.log(err?.message);
       }
     };
-    fetchData();
+    if (session?.data?.user?.email) {
+      fetchData();
+    }
   }, [session?.data?.user?.email, carts]);
 
   const navItems = [
