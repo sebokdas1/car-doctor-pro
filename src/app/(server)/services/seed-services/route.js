@@ -4,12 +4,18 @@ import { NextResponse } from "next/server";
 
 export const GET = async () => {
   const db = await connectDB();
-  const servicesCollection = db.collection("services");
+  const servicesCollection = await db.collection("services");
   try {
     await servicesCollection.deleteMany();
-    const resp = await servicesCollection.insertMany(services);
-    return NextResponse.json({ message: "Services Seeded Succesfully" });
+    await servicesCollection.insertMany(services);
+    return NextResponse.json(
+      { message: "Services Seeded Succesfully" },
+      { status: 200 }
+    );
   } catch (error) {
-    return NextResponse.json({ message: "something went wrong" });
+    return NextResponse.json(
+      { message: "something went wrong" },
+      { error: error.message }
+    );
   }
 };

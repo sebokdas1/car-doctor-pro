@@ -5,21 +5,24 @@ import { NextResponse } from "next/server";
 // booking delete api
 export const DELETE = async (request, { params }) => {
   const db = await connectDB();
-  const bookingsCollection = db.collection("bookings");
+  const bookingsCollection = await db.collection("bookings");
   try {
-    const resp = await bookingsCollection.deleteOne({
+    await bookingsCollection.deleteOne({
       _id: new ObjectId(params.id),
     });
-    return NextResponse.json({ message: "bookings deleted", response: resp });
+    return NextResponse.json({ message: "bookings deleted" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: "something went wrong" });
+    return NextResponse.json(
+      { message: "something went wrong" },
+      { error: error.message }
+    );
   }
 };
 
 // booking update api
 export const PATCH = async (request, { params }) => {
   const db = await connectDB();
-  const bookingsCollection = db.collection("bookings");
+  const bookingsCollection = await db.collection("bookings");
   const updatedDoc = await request.json();
   try {
     const resp = await bookingsCollection.updateOne(
@@ -33,25 +36,37 @@ export const PATCH = async (request, { params }) => {
       },
       { upsert: true }
     );
-    return NextResponse.json({
-      message: "updated the booking",
-      response: resp,
-    });
+    return NextResponse.json(
+      {
+        message: "updated the booking",
+        response: resp,
+      },
+      { status: 200 }
+    );
   } catch (error) {
-    return NextResponse.json({ message: "something went wrong" });
+    return NextResponse.json(
+      { message: "something went wrong" },
+      { error: error.message }
+    );
   }
 };
 
 // booking get api
 export const GET = async (request, { params }) => {
   const db = await connectDB();
-  const bookingsCollection = db.collection("bookings");
+  const bookingsCollection = await db.collection("bookings");
   try {
     const resp = await bookingsCollection.findOne({
       _id: new ObjectId(params.id),
     });
-    return NextResponse.json({ message: "booking found", response: resp });
+    return NextResponse.json(
+      { message: "booking found", response: resp },
+      { status: 200 }
+    );
   } catch (error) {
-    return NextResponse.json({ message: "something went wrong" });
+    return NextResponse.json(
+      { message: "something went wrong" },
+      { error: error.message }
+    );
   }
 };

@@ -7,7 +7,7 @@ export const POST = async (request) => {
     const newUser = await request.json();
 
     const db = await connectDB();
-    const userCollection = db.collection("users");
+    const userCollection = await db.collection("users");
     const exist = await userCollection.findOne({ email: newUser.email });
 
     if (exist) {

@@ -14,9 +14,10 @@ export const DELETE = async (request, { params }) => {
 
     return NextResponse.json({ message: "Item Deleted" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({
-      message: "Something went wrong",
-      error: error.message,
-    });
+    return NextResponse.json(
+      { message: "Something went wrong" },
+      { error: error.message },
+      { status: 500 }
+    );
   }
 };

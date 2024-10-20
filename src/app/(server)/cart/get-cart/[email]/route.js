@@ -4,36 +4,32 @@ import { NextResponse } from "next/server";
 //Get cart items
 export const GET = async (request, { params }) => {
   const db = await connectDB();
-  const cartsCollection = db.collection("carts");
+  const cartsCollection = await db.collection("carts");
   try {
     const carts = await cartsCollection.find({ email: params.email }).toArray();
-    return NextResponse.json(carts);
+    return NextResponse.json(carts, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: "something went wrong" });
+    return NextResponse.json(
+      { message: "something went wrong" },
+      { error: error.message },
+      { status: 500 }
+    );
   }
 };
 
 //Delete cart items
 export const DELETE = async (request, { params }) => {
   const db = await connectDB();
-  const cartsCollection = db.collection("carts");
+  const cartsCollection = await db.collection("carts");
 
   try {
-    const result = await cartsCollection.deleteMany({ email: params.email });
-
-    if (result.deletedCount > 0) {
-      return NextResponse.json({
-        message: `${result.deletedCount} items deleted`,
-      });
-    } else {
-      return NextResponse.json({
-        message: "No items found for the given email",
-      });
-    }
+    await cartsCollection.deleteMany({ email: params.email });
+    return NextResponse.json({ message: "All items Deleted" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({
-      message: "Something went wrong",
-      error: error.message,
-    });
+    return NextResponse.json(
+      { message: "Something went wrong" },
+      { error: error.message },
+      { status: 500 }
+    );
   }
 };
