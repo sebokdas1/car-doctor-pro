@@ -1,26 +1,46 @@
 "use client";
 import SocialSignIn from "@/components/shared/SocialSignIn";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const Signup = () => {
+  const router = useRouter();
+  const [newError, setNewError] = useState();
   const handleSignUp = async (event) => {
     event.preventDefault();
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    if (!email || !password) {
+      setNewError("Please enter both email and password");
+      return;
+    }
+
     const newUser = {
-      name: event.target.name.value,
-      email: event.target.email.value,
-      password: event.target.password.value,
+      name,
+      email,
+      password,
     };
-    const resp = await fetch(`/sign-up/api`, {
-      method: "POST",
-      body: JSON.stringify(newUser),
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-    if (resp.status === 200) {
-      event.target.reset();
+
+    try {
+      const resp = await axios.post("/sign-up/api", newUser);
+
+      if (resp?.status === 200) {
+        toast.success(resp?.data?.message);
+        router.push("/log-in");
+      }
+    } catch (error) {
+      if (error.response) {
+        setNewError(error.response.data.error || "Something went wrong");
+      } else if (error.request) {
+        setNewError("No response from server");
+      } else {
+        setNewError("Error: " + error.message);
+      }
     }
   };
   return (
@@ -64,6 +84,7 @@ const Signup = () => {
               className="w-full mt-3 input input-bordered"
             />
             <br />
+            {newError && <p className="text-red-500 mt-1">{newError}</p>}
             <button
               type="submit"
               className="w-full btn btn-primary mt-12 text-lg"

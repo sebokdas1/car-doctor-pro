@@ -31,7 +31,7 @@ const Login = () => {
     if (resp.error) {
       setNewError(resp.error);
     } else {
-      window.location.href = resp.url || "/";
+      window.location.href = resp?.url || "/";
     }
   };
 
