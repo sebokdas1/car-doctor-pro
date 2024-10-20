@@ -27,8 +27,9 @@ const Page = () => {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(`/my-bookings/api/booking/${id}`);
-      if (res?.response?.deletedCount > 0) {
-        toast.success(res?.message);
+
+      if (res.status === 200) {
+        toast.success(res?.data?.message);
       }
     } catch (err) {
       toast.error(err.message);

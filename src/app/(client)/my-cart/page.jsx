@@ -35,7 +35,7 @@ const Page = () => {
   const handleDeleteCart = async (id) => {
     try {
       const res = await axios.delete(`/cart/delete-cart/api/${id}`);
-      toast.success(res?.message);
+      toast.success(res?.data?.message);
     } catch (err) {
       toast.error(err?.message);
     }
@@ -45,7 +45,7 @@ const Page = () => {
   const handleDeleteAll = async (email) => {
     try {
       const res = await axios.delete(`/cart/get-cart/${email}`);
-      toast.success(res?.message);
+      toast.success(res?.data?.message);
     } catch (err) {
       toast.error(err?.message);
     }
