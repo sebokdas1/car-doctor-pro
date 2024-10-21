@@ -3,9 +3,9 @@ import { services } from "@/lib/services";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {
-  const db = await connectDB();
-  const servicesCollection = await db.collection("services");
   try {
+    const db = await connectDB();
+    const servicesCollection = await db.collection("services");
     await servicesCollection.deleteMany();
     await servicesCollection.insertMany(services);
     return NextResponse.json(

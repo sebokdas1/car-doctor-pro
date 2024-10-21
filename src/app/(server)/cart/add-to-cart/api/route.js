@@ -4,10 +4,10 @@ import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
   const newCart = await request.json();
-  const db = await connectDB();
-  const cartsCollection = await db.collection("carts");
 
   try {
+    const db = await connectDB();
+    const cartsCollection = await db.collection("carts");
     await cartsCollection.insertOne({
       ...newCart,
       _id: new ObjectId(),

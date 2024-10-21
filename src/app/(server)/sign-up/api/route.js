@@ -3,9 +3,8 @@ import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
+  const newUser = await request.json();
   try {
-    const newUser = await request.json();
-
     const db = await connectDB();
     const userCollection = await db.collection("users");
     const exist = await userCollection.findOne({ email: newUser.email });

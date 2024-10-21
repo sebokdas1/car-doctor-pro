@@ -4,7 +4,7 @@ import axios from "axios";
 export const getServices = async () => {
   try {
     const response = await axios.get(
-      `${process.env.NEXTAUTH_URL_INTERNAL}/services/api/get-all`
+      `${process.env.DOCTOR_PRO_NEXTAUTH_URL_INTERNAL}/services/api/get-all`
     );
     const services = response?.data;
     return services;
@@ -18,7 +18,7 @@ export const getServices = async () => {
 export const getServiceDetails = async (id) => {
   try {
     const response = await axios.get(
-      `${process.env.NEXTAUTH_URL_INTERNAL}/services/api/${id}`
+      `${process.env.DOCTOR_PRO_NEXTAUTH_URL_INTERNAL}/services/api/${id}`
     );
     const service = response?.data;
     return service;
@@ -32,7 +32,7 @@ export const getServiceDetails = async (id) => {
 export const getProducts = async () => {
   try {
     const response = await axios.get(
-      `${process.env.NEXTAUTH_URL_INTERNAL}/products/api/get-all`
+      `${process.env.DOCTOR_PRO_NEXTAUTH_URL_INTERNAL}/products/api/get-all`
     );
     const products = response?.data;
     return products;

@@ -3,9 +3,9 @@ import { products } from "@/lib/products";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {
-  const db = await connectDB();
-  const productsCollection = await db.collection("products");
   try {
+    const db = await connectDB();
+    const productsCollection = await db.collection("products");
     await productsCollection.deleteMany();
     await productsCollection.insertMany(products);
     return NextResponse.json({

@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 
 // booking delete api
 export const DELETE = async (request, { params }) => {
-  const db = await connectDB();
-  const bookingsCollection = await db.collection("bookings");
   try {
+    const db = await connectDB();
+    const bookingsCollection = await db.collection("bookings");
     await bookingsCollection.deleteOne({
       _id: new ObjectId(params.id),
     });
@@ -21,10 +21,10 @@ export const DELETE = async (request, { params }) => {
 
 // booking update api
 export const PATCH = async (request, { params }) => {
-  const db = await connectDB();
-  const bookingsCollection = await db.collection("bookings");
   const updatedDoc = await request.json();
   try {
+    const db = await connectDB();
+    const bookingsCollection = await db.collection("bookings");
     const resp = await bookingsCollection.updateOne(
       {
         _id: new ObjectId(params.id),

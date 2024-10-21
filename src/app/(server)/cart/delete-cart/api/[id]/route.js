@@ -4,10 +4,9 @@ import { NextResponse } from "next/server";
 
 // Delete cart Item
 export const DELETE = async (request, { params }) => {
-  const db = await connectDB();
-  const cartsCollection = await db.collection("carts");
-
   try {
+    const db = await connectDB();
+    const cartsCollection = await db.collection("carts");
     await cartsCollection.deleteOne({
       _id: new ObjectId(params.id),
     });

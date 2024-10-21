@@ -3,15 +3,15 @@ import nodemailer from "nodemailer";
 
 export const POST = async (request) => {
   const data = await request.json();
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.DOCTOR_PRO_NODEMAILER_EMAIL,
-      pass: process.env.DOCTOR_PRO_NODEMAILER_PASSWORD,
-    },
-  });
 
   try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.DOCTOR_PRO_NODEMAILER_EMAIL,
+        pass: process.env.DOCTOR_PRO_NODEMAILER_PASSWORD,
+      },
+    });
     await transporter.sendMail({
       from: {
         name: "Car Doctor Pro",
