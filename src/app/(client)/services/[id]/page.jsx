@@ -11,6 +11,7 @@ export const metadata = {
 const page = async ({ params }) => {
   const details = await getServiceDetails(params.id);
   const { _id, title, description, img, price, facility } = details.service;
+
   return (
     <div className="w-11/12 mx-auto my-10">
       <div>
