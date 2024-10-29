@@ -3,7 +3,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <section className=" hero min-h-screen">
+    <section className=" hero my-12">
       <div className="hero-content flex-col lg:flex-row">
         <div className="lg:w-1/2 relative">
           <Image

@@ -13,7 +13,7 @@ const Banner = () => {
               }.jpg)`,
             }}
             id={`slide${index + 1}`}
-            className="carousel-item relative w-full h-[90vh] bg-top bg-no-repeat bg-cover"
+            className="carousel-item relative w-full h-[570px] bg-top bg-no-repeat bg-cover"
           >
             <div className="h-full w-full lg:w-[50%] flex items-center pl-8 lg:pl-36">
               <div className="lg:space-y-6">
