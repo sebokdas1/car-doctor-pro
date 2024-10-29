@@ -42,7 +42,7 @@ const Navbar = () => {
     },
     {
       title: "Contact",
-      path: "/",
+      path: "/contact",
     },
   ];
   const userNavItems = [
@@ -125,7 +125,7 @@ const Navbar = () => {
               <Link
                 key={item?.title}
                 href={item?.path}
-                className={`font-semibold hover:text-primary duration-300 ${
+                className={` font-semibold hover:text-primary duration-300 ${
                   pathname === item?.path && "text-primary"
                 }`}
               >
@@ -137,7 +137,7 @@ const Navbar = () => {
                 <Link
                   key={item?.title}
                   href={item?.path}
-                  className={`font-semibold hover:text-primary duration-300 ${
+                  className={` font-semibold hover:text-primary duration-300 ${
                     pathname === item?.path && "text-primary"
                   }`}
                 >
