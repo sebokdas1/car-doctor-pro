@@ -1,11 +1,40 @@
+"use client";
+import axios from "axios";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { BsFillPhoneVibrateFill } from "react-icons/bs";
 import { FaTelegram, FaDiscord } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { MdMail } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const Page = () => {
+  const [newError, setNewError] = useState("");
+  const handleSentMessage = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const subject = e.target.subject.value;
+    const text = e.target.message.value;
+
+    if (!email || !subject || !text) {
+      setNewError("All fields are required");
+      return;
+    }
+    try {
+      const response = await axios.post("/sent-email", {
+        email,
+        subject,
+        text: `${text}
+        email: ${email}`,
+      });
+      if (response?.status === 200) {
+        toast.success(response?.data?.message);
+        e.target.reset();
+      }
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
   return (
     <div className="container mx-auto">
       <div className="p-[10px]">
@@ -13,11 +42,11 @@ const Page = () => {
           Contact
         </h1>
         <h2 className="text-[#262626] text-[22px] font-bold text-center leading-none">
-          Connect with me
+          Connect with us
         </h2>
       </div>
-      <div className="my-[25px] pb-45px lg:flex">
-        <div className="bg-gradient-to-br from-white to-[#e7ecef] shadow-md transition-all duration-300 p-8 rounded-[20px] lg:mr-[18px]">
+      <div className="my-[25px] pb-45px lg:flex justify-center">
+        {/* <div className="bg-gradient-to-br from-white to-[#e7ecef] shadow-md transition-all duration-300 p-8 rounded-[20px] lg:mr-[18px]">
           <Image
             height={178}
             width={284}
@@ -76,9 +105,9 @@ const Page = () => {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="bg-gradient-to-br from-white to-[#e7ecef] shadow-md transition-all duration-300 p-8 rounded-[20px] mr-[10px] ml-[10px] mt-6 lg:mt-0 mx-[10px]">
-          <form>
+          <form onSubmit={handleSentMessage}>
             <label className="font-semibold" for="email">
               Your email
             </label>
@@ -87,7 +116,6 @@ const Page = () => {
               type="email"
               id="email"
               name="email"
-              // required
             />
 
             <label className="font-semibold" for="subject">
@@ -99,7 +127,6 @@ const Page = () => {
               id="subject"
               name="subject"
               autoComplete="off"
-              // required
             />
             <label className="font-semibold" for="message">
               Your message
@@ -111,8 +138,8 @@ const Page = () => {
               cols="30"
               rows="7"
               autoComplete="off"
-              // required
             />
+            {newError && <p className="text-red-500 mb-2">{newError}</p>}
             <input
               className="btn btn-primary"
               type="submit"

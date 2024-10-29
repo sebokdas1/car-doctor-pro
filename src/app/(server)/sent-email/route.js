@@ -17,11 +17,11 @@ export const POST = async (request) => {
         name: "Car Doctor Pro",
         address: process.env.DOCTOR_PRO_NODEMAILER_EMAIL,
       },
-      to: [data.email],
+      to: "sebok.das66@gmail.com",
       subject: data.subject,
       text: data.text,
     });
-    return NextResponse.json({ message: "Email sent", status: 200 });
+    return NextResponse.json({ message: "Message Sent", status: 200 });
   } catch (error) {
     return NextResponse.json({
       message: "Error sending email",
