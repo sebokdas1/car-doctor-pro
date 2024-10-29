@@ -28,7 +28,7 @@ const Testimonial = () => {
         <div className="text-center">
           <h3 className="text-2xl font-bold text-[#FF3811]">Testimonial</h3>
           <h2 className="text-4xl">What Customer Says</h2>
-          <p>
+          <p className="text-[#808080]">
             the majority have suffered alteration in some form, by injected
             humour, or randomised <br />
             words which don`t look even slightly believable.

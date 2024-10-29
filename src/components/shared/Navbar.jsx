@@ -3,10 +3,12 @@ import axios from "axios";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { React, useState, useEffect } from "react";
 import { IoSearch, IoCart } from "react-icons/io5";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const session = useSession();
   const [carts, setCarts] = useState([]);
   useEffect(() => {
@@ -43,6 +45,12 @@ const Navbar = () => {
       path: "/",
     },
   ];
+  const userNavItems = [
+    {
+      title: "myBookings",
+      path: "/my-bookings",
+    },
+  ];
   return (
     <nav className=" bg-base-100">
       <div className="navbar container justify-center mx-auto">
@@ -64,25 +72,31 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-
+            {/* small device menu */}
             <div className="menu menu-sm dropdown-content bg-base-100 z-[1] mt-3 w-52 p-2">
               {navItems.map((item) => (
                 <Link
                   key={item?.title}
                   href={item?.path}
-                  className="font-semibold mt-3 mb-3 text-xl  border-b border-gray-500 hover:text-primary duration-300"
+                  className={`uppercase font-semibold mt-3 mb-3 text-xl  border-b border-gray-500 hover:text-primary duration-300 ${
+                    pathname === item.path && "text-primary"
+                  }`}
                 >
                   {item?.title}
                 </Link>
               ))}
-              {session.status === "authenticated" && (
-                <Link
-                  href={"/my-bookings"}
-                  className="font-semibold mt-3 mb-3 text-xl border-b border-gray-500 hover:text-primary duration-300"
-                >
-                  myBookings
-                </Link>
-              )}
+              {session.status === "authenticated" &&
+                userNavItems.map((item) => (
+                  <Link
+                    key={item?.title}
+                    href={item?.path}
+                    className={`uppercase font-semibold mt-3 mb-3 text-xl  border-b border-gray-500 hover:text-primary duration-300 ${
+                      pathname === item.path && "text-primary"
+                    }`}
+                  >
+                    {item?.title}
+                  </Link>
+                ))}
               {session.status === "authenticated" && (
                 <button
                   onClick={() => signOut()}
@@ -103,25 +117,33 @@ const Navbar = () => {
             />
           </Link>
         </div>
+
+        {/* large device menu */}
         <div className="navbar-center hidden lg:flex">
           <div className="flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item?.title}
                 href={item?.path}
-                className="font-semibold hover:text-primary duration-300"
+                className={`font-semibold hover:text-primary duration-300 ${
+                  pathname === item?.path && "text-primary"
+                }`}
               >
                 {item?.title}
               </Link>
             ))}
-            {session?.status === "authenticated" && (
-              <Link
-                href={"/my-bookings"}
-                className="font-semibold hover:text-primary duration-300"
-              >
-                myBookings
-              </Link>
-            )}
+            {session?.status === "authenticated" &&
+              userNavItems.map((item) => (
+                <Link
+                  key={item?.title}
+                  href={item?.path}
+                  className={`font-semibold hover:text-primary duration-300 ${
+                    pathname === item?.path && "text-primary"
+                  }`}
+                >
+                  {item?.title}
+                </Link>
+              ))}
           </div>
         </div>
         <div className="navbar-end">

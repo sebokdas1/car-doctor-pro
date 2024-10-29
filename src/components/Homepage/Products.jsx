@@ -9,7 +9,7 @@ const Products = async () => {
       <div className="text-center container mx-auto">
         <h3 className="text-2xl font-bold text-[#FF3811]">Popular Products</h3>
         <h2 className="text-4xl">Browse Our Products</h2>
-        <p>
+        <p className="text-[#808080]">
           the majority have suffered alteration in some form, by injected
           humour, or randomised <br />
           words which dont look even slightly believable.

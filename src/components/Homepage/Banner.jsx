@@ -4,7 +4,7 @@ const Banner = () => {
   return (
     <section className="container mx-auto ">
       <div className="carousel w-full">
-        {banners.map((banner, index) => (
+        {banners?.map((banner, index) => (
           <div
             key={index}
             style={{

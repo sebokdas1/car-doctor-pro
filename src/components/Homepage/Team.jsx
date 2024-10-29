@@ -27,7 +27,7 @@ const Team = () => {
       <div className="text-center">
         <h3 className="text-2xl font-bold text-[#FF3811]">Team</h3>
         <h2 className="text-4xl">Meet Our Team</h2>
-        <p>
+        <p className="text-[#808080]">
           the majority have suffered alteration in some form, by injected
           humour, or randomised <br />
           words which don`t look even slightly believable.

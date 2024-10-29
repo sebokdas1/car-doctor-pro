@@ -45,7 +45,7 @@ const Page = () => {
           alt="service"
           width={1920}
           height={1080}
-          style={{ width: "90vw" }}
+          // style={{ width: "90vw" }}
         />
         <div className="absolute h-full left-0 top-0 flex items-center justify-center bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] ">
           <h1 className="text-white text-3xl font-bold flex justify-center items-center ml-8">
@@ -53,7 +53,7 @@ const Page = () => {
           </h1>
         </div>
       </div>
-      <div className="mt-12">
+      <div className="mt-12 lg:w-3/4 mx-auto">
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
