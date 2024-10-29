@@ -39,7 +39,7 @@ const Team = () => {
       <div className="">
         <div className="grid grid-cols-1 lg:grid-cols-3  gap-1 mt-6">
           {teams?.slice(previous, current)?.map((team) => (
-            <div className="card bg-base-100 w-96 shadow" key={team?.id}>
+            <div className="card bg-base-100 lg:w-96 shadow" key={team?.id}>
               <figure>
                 <Image src={team?.img} alt="img" height={294} width={314} />
               </figure>

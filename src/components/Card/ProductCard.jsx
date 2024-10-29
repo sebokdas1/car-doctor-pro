@@ -27,7 +27,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="card bg-base-100 w-96 shadow-xl">
+    <div className="card bg-base-100 lg:w-96 shadow-xl">
       <figure className="px-6 bg-[#f3f3f3] py-6">
         <Image
           height={153}
