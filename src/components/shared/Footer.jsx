@@ -34,14 +34,20 @@ const Footer = () => {
       </aside>
       <nav>
         <h6 className="text-white font-semibold  uppercase pb-3">About</h6>
-        <a className="link link-hover">Home</a>
+        <Link href={"/"} className="link link-hover">
+          Home
+        </Link>
         <a className="link link-hover">Service</a>
-        <a className="link link-hover">Contact</a>
+        <Link href={"/contact"} className="link link-hover">
+          Contact
+        </Link>
       </nav>
       <nav>
         <h6 className="text-white font-semibold  uppercase pb-3">Company</h6>
         <a className="link link-hover">Why Car Doctor</a>
-        <a className="link link-hover">About</a>
+        <Link href={"/about"} className="link link-hover">
+          About
+        </Link>
       </nav>
       <nav>
         <h6 className="text-white font-semibold  uppercase pb-3">Support</h6>

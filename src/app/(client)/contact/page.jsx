@@ -1,11 +1,6 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import React, { useState } from "react";
-import { BsFillPhoneVibrateFill } from "react-icons/bs";
-import { FaTelegram, FaDiscord } from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io";
-import { MdMail } from "react-icons/md";
 import { toast } from "react-toastify";
 
 const Page = () => {
