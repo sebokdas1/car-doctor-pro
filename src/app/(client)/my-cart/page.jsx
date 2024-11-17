@@ -1,5 +1,4 @@
 "use client";
-import Loading from "@/app/loading";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
