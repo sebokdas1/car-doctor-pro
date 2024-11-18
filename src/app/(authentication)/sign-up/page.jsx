@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const Signup = () => {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [newError, setNewError] = useState();
   const handleSignUp = async (event) => {
@@ -25,6 +26,7 @@ const Signup = () => {
       password,
     };
     try {
+      setLoading(true);
       const resp = await axios.post("/sign-up/api", newUser);
 
       if (resp?.status === 200) {
@@ -40,6 +42,7 @@ const Signup = () => {
         setNewError("Error: " + error.message);
       }
     }
+    setLoading(false);
   };
   return (
     <div className="container lg:px-24 mx-auto py-18">
@@ -87,7 +90,7 @@ const Signup = () => {
               type="submit"
               className="w-full btn btn-primary mt-12 text-lg"
             >
-              Sign Up
+              {loading === true ? "Signing Up ..." : "Sign Up"}
             </button>
           </form>
           <div>

@@ -7,6 +7,7 @@ import SocialSignIn from "@/components/shared/SocialSignIn";
 import { useSearchParams } from "next/navigation";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const path = searchParams.get("redirect") || "/";
   const [newError, setNewError] = useState();
@@ -20,7 +21,7 @@ const Login = () => {
       setNewError("Please enter both email and password");
       return;
     }
-
+    setLoading(true);
     const resp = await signIn("credentials", {
       email,
       password,
@@ -33,6 +34,7 @@ const Login = () => {
     } else {
       window.location.href = resp?.url || "/";
     }
+    setLoading(false);
   };
 
   return (
@@ -74,7 +76,7 @@ const Login = () => {
               type="submit"
               className="w-full btn btn-primary mt-8 text-lg"
             >
-              Log In
+              {loading === true ? "Loging In ..." : "Log In"}
             </button>
           </form>
           <Link
