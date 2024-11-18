@@ -18,6 +18,13 @@ export const middleware = async (request) => {
     );
   }
 
+  // if (pathname.startsWith("/my-cart") && token.role !== "user") {
+  //   return NextResponse.json(
+  //     { message: "Access denied: Admins only" },
+  //     { status: 403 }
+  //   );
+  // }
+
   return NextResponse.next();
 };
 

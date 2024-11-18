@@ -1,21 +1,9 @@
 import { connectDB } from "@/lib/connectDB";
-import { getToken } from "next-auth/jwt";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
-const AUTH_SECRET = process.env.DOCTOR_PRO_AUTH_SECRET;
-
 export const PUT = async (request) => {
   try {
-    // Verify admin role
-    const token = await getToken({ req: request, secret: AUTH_SECRET });
-    // if (!token || token.role !== "admin") {
-    //   return NextResponse.json(
-    //     { message: "Access denied: Admins only" },
-    //     { status: 403 }
-    //   );
-    // }
-
     const { userId } = await request.json();
     if (!userId) {
       return NextResponse.json(
