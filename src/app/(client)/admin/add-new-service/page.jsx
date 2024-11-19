@@ -35,32 +35,17 @@ const Page = () => {
     const serviceType = event.target.serviceType.value;
 
     const serviceIImage = event.target.image.files[0];
-    // const api_key = process.env.DOCTOR_PRO_IMGBB_API_KEY;
-    // console.log(serviceIImage);
 
     if (!serviceIImage) {
       console.error("No image selected");
       return;
     }
 
-    // Wrapping the image in FormData
     const formData = new FormData();
     formData.append("image", serviceIImage);
-
+    const imgbbUrl = `https://api.imgbb.com/1/upload?key=31e243c554e78879b46d5a0e61434ed8`;
     try {
-      const imgbbResult = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${process.env.DOCTOR_PRO_IMGBB_API_KEY}`,
-        formData
-      );
-
-      //   console.log({
-      //     title: serviceName,
-      //     description: serviceDescription,
-      //     img: imgbbResult.data.data.url,
-      //     price: servicePrice,
-      //     type: serviceType,
-      //     facility: facility,
-      //   });
+      const imgbbResult = await axios.post(imgbbUrl, formData);
 
       try {
         const res = await axios.post("/add-service", {
