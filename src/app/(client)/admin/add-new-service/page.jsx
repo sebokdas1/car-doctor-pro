@@ -3,6 +3,28 @@ import Image from "next/image";
 import React from "react";
 
 const Page = () => {
+  const facility = [
+    {
+      name: "Instant Car Services",
+      details:
+        "Fuga numquam nulla nam, facere neque dignissimos ab esse magni accusamus eveniet ad corrupti, architecto nostrum.",
+    },
+    {
+      name: "24/7 Quality Service",
+      details:
+        "Fuga numquam nulla nam, facere neque dignissimos ab esse magni accusamus eveniet ad corrupti, architecto nostrum.",
+    },
+    {
+      name: "Easy Customer Service",
+      details:
+        "Fuga numquam nulla nam, facere neque dignissimos ab esse magni accusamus eveniet ad corrupti, architecto nostrum.",
+    },
+    {
+      name: "Quality Cost Service",
+      details:
+        "Fuga numquam nulla nam, facere neque dignissimos ab esse magni accusamus eveniet ad corrupti, architecto nostrum.",
+    },
+  ];
   const handleAddProduct = (event) => {
     event.preventDefault();
     const serviceName = event.target.serviceName.value;
@@ -10,12 +32,14 @@ const Page = () => {
     const serviceIImage = event.target.image.value;
     const serviceDescription = event.target.description.value;
     const serviceType = event.target.serviceType.value;
+
     console.log({
-      serviceName,
-      serviceDescription,
-      serviceIImage,
-      servicePrice,
-      serviceType,
+      title: serviceName,
+      description: serviceDescription,
+      img: serviceIImage,
+      price: servicePrice,
+      type: serviceType,
+      facility: facility,
     });
   };
   return (
