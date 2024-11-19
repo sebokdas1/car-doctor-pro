@@ -1,6 +1,8 @@
 "use client";
+import axios from "axios";
 import Image from "next/image";
 import React from "react";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const facility = [
@@ -25,22 +27,59 @@ const Page = () => {
         "Fuga numquam nulla nam, facere neque dignissimos ab esse magni accusamus eveniet ad corrupti, architecto nostrum.",
     },
   ];
-  const handleAddProduct = (event) => {
+  const handleAddProduct = async (event) => {
     event.preventDefault();
     const serviceName = event.target.serviceName.value;
     const servicePrice = event.target.servicePrice.value;
-    const serviceIImage = event.target.image.value;
     const serviceDescription = event.target.description.value;
     const serviceType = event.target.serviceType.value;
 
-    console.log({
-      title: serviceName,
-      description: serviceDescription,
-      img: serviceIImage,
-      price: servicePrice,
-      type: serviceType,
-      facility: facility,
-    });
+    const serviceIImage = event.target.image.files[0];
+    // const api_key = process.env.DOCTOR_PRO_IMGBB_API_KEY;
+    // console.log(serviceIImage);
+
+    if (!serviceIImage) {
+      console.error("No image selected");
+      return;
+    }
+
+    // Wrapping the image in FormData
+    const formData = new FormData();
+    formData.append("image", serviceIImage);
+
+    try {
+      const imgbbResult = await axios.post(
+        "https://api.imgbb.com/1/upload?key=31e243c554e78879b46d5a0e61434ed8",
+        formData
+      );
+
+      //   console.log({
+      //     title: serviceName,
+      //     description: serviceDescription,
+      //     img: imgbbResult.data.data.url,
+      //     price: servicePrice,
+      //     type: serviceType,
+      //     facility: facility,
+      //   });
+
+      try {
+        const res = await axios.post("/add-service", {
+          title: serviceName,
+          description: serviceDescription,
+          img: imgbbResult.data.data.url,
+          price: servicePrice,
+          type: serviceType,
+          facility: facility,
+        });
+        if (res.status === 200) {
+          toast.success(res?.message);
+        }
+      } catch (error) {
+        toast.error(error.error.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="container mx-auto">
