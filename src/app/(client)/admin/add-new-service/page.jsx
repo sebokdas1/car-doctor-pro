@@ -49,7 +49,7 @@ const Page = () => {
 
     try {
       const imgbbResult = await axios.post(
-        "https://api.imgbb.com/1/upload?key=31e243c554e78879b46d5a0e61434ed8",
+        `https://api.imgbb.com/1/upload?key=${process.env.DOCTOR_PRO_IMGBB_API_KEY}`,
         formData
       );
 
