@@ -56,8 +56,8 @@ const Page = () => {
           type: serviceType,
           facility: facility,
         });
-        if (res.status === 200) {
-          toast.success(res?.message);
+        if (res.data.status === 200) {
+          toast.success(res?.data?.message);
         }
       } catch (error) {
         toast.error(error.error.message);
