@@ -1,9 +1,22 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import ServiceCard from "../Card/ServiceCard";
-import { getServices } from "@/lib/getServices";
+import axios from "axios";
 
-const Services = async () => {
-  const { services } = await getServices();
+const Services = () => {
+  const [services, setServices] = useState([]);
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(`/services/api/get-all`);
+        setServices(response.data.services);
+      } catch (error) {
+        console.error("Error fetching services:", error?.message);
+      }
+    };
+
+    fetchServices();
+  }, []);
   return (
     <section className="text-slate-800 ">
       <div className="text-center container mx-auto">

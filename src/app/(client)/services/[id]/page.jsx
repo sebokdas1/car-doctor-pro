@@ -1,18 +1,24 @@
-import { getServiceDetails } from "@/lib/getServices";
+"use client";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export const metadata = {
-  title: "Service details",
-  description: "car service details page",
-};
+const Page = ({ params }) => {
+  const [details, setDetails] = useState([]);
+  useEffect(() => {
+    const fetchServiceDetails = async () => {
+      try {
+        const response = await axios.get(`/services/api/${params.id}`);
+        setDetails(response.data.service);
+      } catch (error) {
+        console.error("Error fetching services:", error?.message);
+      }
+    };
 
-const page = async ({ params }) => {
-  const details = await getServiceDetails(params.id);
-  console.log(details);
-  const { _id, title, description, img, price, facility } =
-    await details?.service;
+    fetchServiceDetails();
+  }, [params.id]);
+  const { _id, title, description, img, price, facility } = details;
 
   return (
     <div className="w-11/12 mx-auto my-10">
@@ -77,4 +83,4 @@ const page = async ({ params }) => {
   );
 };
 
-export default page;
+export default Page;
