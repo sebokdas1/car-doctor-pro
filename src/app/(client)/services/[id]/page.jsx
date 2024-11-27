@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -22,6 +23,21 @@ const Page = ({ params }) => {
 
   return (
     <div className="w-11/12 mx-auto my-10">
+      {/* adding meta data */}
+      <Head>
+        <title>{title ? `Service Details - ${title}` : "Loading..."}</title>
+        <meta
+          name="description"
+          content={description || "Service details page"}
+        />
+        <meta property="og:image" content={img || "/default-image.png"} />
+        <meta property="og:title" content={title || "Service Details"} />
+        <meta
+          property="og:description"
+          content={description || "Explore our service details"}
+        />
+      </Head>
+
       <div>
         <div className="relative  h-72">
           <Image

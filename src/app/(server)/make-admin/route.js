@@ -3,6 +3,8 @@ import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 export const PUT = async (request) => {
+  const protectionResponse = await protectAdminRoute(request);
+  if (protectionResponse) return protectionResponse;
   try {
     const { userId } = await request.json();
     if (!userId) {
@@ -12,7 +14,6 @@ export const PUT = async (request) => {
       );
     }
 
-    // Promote the user to admin in the database
     const db = await connectDB();
     const usersCollection = await db.collection("users");
     const result = await usersCollection.updateOne(

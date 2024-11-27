@@ -2,16 +2,21 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../Card/ProductCard";
 import axios from "axios";
+import ServicesLoadings from "../Loadings/servicesLoadings";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true);
       try {
         const response = await axios.get("/products/api/get-all");
         setProducts(response.data.products);
       } catch (error) {
         console.error("Error fetching services:", error?.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -28,11 +33,15 @@ const Products = () => {
           words which dont look even slightly believable.
         </p>
       </div>
-      <div className="container mx-auto mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {products?.map((product) => (
-          <ProductCard product={product} key={product?._id} />
-        ))}
-      </div>
+      {loading === true ? (
+        <ServicesLoadings />
+      ) : (
+        <div className="container mx-auto mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {products?.map((product) => (
+            <ProductCard product={product} key={product?._id} />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
