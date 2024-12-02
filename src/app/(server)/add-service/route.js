@@ -7,9 +7,9 @@ export const POST = async (request) => {
   if (protectionResponse) return protectionResponse;
   const service = await request.json();
   const _id = new ObjectId().toString();
-  const newService = { _id, ...service };
 
   try {
+    const newService = { _id, ...service };
     const db = await connectDB();
     const serviceCollection = await db.collection("services");
     await serviceCollection.insertOne(newService);

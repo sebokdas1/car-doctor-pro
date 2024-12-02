@@ -61,6 +61,7 @@ const Page = () => {
         }
       } catch (error) {
         toast.error(error.error.message);
+        console.log(error);
       }
     } catch (error) {
       console.log(error);
