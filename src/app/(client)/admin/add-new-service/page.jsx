@@ -58,9 +58,10 @@ const Page = () => {
         });
         if (res.data.status === 200) {
           toast.success(res?.data?.message);
+          event.target.reset();
         }
       } catch (error) {
-        toast.error(error.error.message);
+        toast.error(error?.error?.message);
         console.log(error);
       }
     } catch (error) {
