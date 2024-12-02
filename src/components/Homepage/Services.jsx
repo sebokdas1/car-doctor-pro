@@ -11,7 +11,9 @@ const Services = () => {
     const fetchServices = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/services/api/get-all`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_DOCTOR_PRO_PRODUCTION_URL}/services/api/get-all`
+        );
         setServices(response.data.services);
       } catch (error) {
         console.error("Error fetching services:", error?.message);

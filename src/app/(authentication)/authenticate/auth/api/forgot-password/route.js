@@ -29,7 +29,7 @@ export const POST = async (request) => {
     },
   });
 
-  const resetLink = `${process.env.DOCTOR_PRO_PRODUCTION_URL}/reset-password?token=${token}`;
+  const resetLink = `${process.env.NEXT_PUBLIC_DOCTOR_PRO_PRODUCTION_URL}/reset-password?token=${token}`;
 
   const mailOptions = {
     from: {

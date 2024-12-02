@@ -1,5 +1,4 @@
 import { getToken } from "next-auth/jwt";
-// import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const middleware = async (request) => {
@@ -7,7 +6,6 @@ export const middleware = async (request) => {
     req: request,
     secret: process.env.DOCTOR_PRO_AUTH_SECRET,
   });
-  // const token = cookies(request).get(process.env.DOCTOR_PRO_COOKIE_TOKEN);
   const pathname = await request?.nextUrl.pathname;
   if (pathname.includes("api")) {
     return NextResponse.next();
