@@ -3,6 +3,8 @@ import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
+  const protectionResponse = await protectAdminRoute(request);
+  if (protectionResponse) return protectionResponse;
   const service = await request.json();
   const _id = new ObjectId().toString();
   const newService = { _id, ...service };
