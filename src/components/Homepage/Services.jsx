@@ -7,7 +7,6 @@ import axios from "axios";
 const Services = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [myNum, setmyNum] = useState(0);
   useEffect(() => {
     const fetchServices = async () => {
       setLoading(true);
@@ -26,9 +25,9 @@ const Services = () => {
 
     fetchServices();
 
-    const interval = setInterval(setmyNum(myNum + 1), 120000);
-    return () => clearInterval(interval);
-  }, [myNum]);
+    // const interval = setInterval(120000);
+    // return () => clearInterval(interval);
+  }, []);
   return (
     <section className="text-slate-800 ">
       <div className="text-center container mx-auto">
