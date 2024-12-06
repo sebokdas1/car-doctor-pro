@@ -14,7 +14,6 @@ const Services = () => {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_DOCTOR_PRO_PRODUCTION_URL}/services/api/get-all`
         );
-        console.log("Services Data:", response.data);
         setServices(response.data.services);
       } catch (error) {
         console.error("Error fetching services:", error);
@@ -24,9 +23,6 @@ const Services = () => {
     };
 
     fetchServices();
-
-    // const interval = setInterval(120000);
-    // return () => clearInterval(interval);
   }, []);
   return (
     <section className="text-slate-800 ">
