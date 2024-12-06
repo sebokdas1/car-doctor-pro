@@ -16,16 +16,21 @@ export const middleware = async (request) => {
     );
   }
 
-  // if (pathname.startsWith("/my-cart") && token.role !== "user") {
-  //   return NextResponse.json(
-  //     { message: "Access denied: Admins only" },
-  //     { status: 403 }
-  //   );
-  // }
+  if (pathname.startsWith("/admin") && token.role !== "admin") {
+    return NextResponse.json(
+      { message: "Access denied: Admins only" },
+      { status: 403 }
+    );
+  }
 
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ["/my-bookings/:path*", "/checkout/:path*", "/my-cart/:path*"],
+  matcher: [
+    "/my-bookings/:path*",
+    "/checkout/:path*",
+    "/admin/:path*",
+    "/my-cart/:path*",
+  ],
 };
