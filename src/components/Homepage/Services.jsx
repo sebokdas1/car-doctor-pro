@@ -7,28 +7,13 @@ import axios from "axios";
 const Services = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
-  // useEffect(() => {
-  //   const fetchServices = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const response = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_DOCTOR_PRO_PRODUCTION_URL}/services/api/get-all`
-  //       );
-  //       setServices(response.data.services);
-  //     } catch (error) {
-  //       console.error("Error fetching services:", error?.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchServices();
-  // }, []);
   useEffect(() => {
     const fetchServices = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/services/api/get-all`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_DOCTOR_PRO_PRODUCTION_URL}/services/api/get-all`
+        );
         console.log("Services Data:", response.data);
         setServices(response.data.services);
       } catch (error) {
@@ -41,8 +26,6 @@ const Services = () => {
     fetchServices();
 
     const interval = setInterval(fetchServices, 120000);
-
-    // Cleanup Function to Clear Interval
     return () => clearInterval(interval);
   }, []);
   return (
